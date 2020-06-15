@@ -2,12 +2,17 @@ package com.fiek.ppmapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
@@ -19,9 +24,10 @@ public class SignUp extends AppCompatActivity {
 
     TextInputLayout regName, regUsername, regEmail, regPhoneNo, regPassword;
     Button regBtn, regToLoginBtn;
+    ImageView fotoNalt;
+    TextView regLogoText, regSloganText;
+    ProgressBar progressBar;
 
-    FirebaseDatabase rootNode;
-    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,11 @@ public class SignUp extends AppCompatActivity {
         regPassword = findViewById(R.id.reg_password);
         regBtn = findViewById(R.id.reg_btn);
         regToLoginBtn = findViewById(R.id.reg_login_btn);
+        fotoNalt = findViewById(R.id.fotonalt);
+        regLogoText = findViewById(R.id.mirid);
+        regSloganText = findViewById(R.id.regjid);
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.GONE);
 
     }
 
@@ -128,13 +139,12 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
-
     public void registerUser(View view) {
 
         if(!validateName() | !validateUsername() | !validateEmail() | !validatePhoneNo() | !validatePassword()){
             return;
         }
-
+        progressBar.setVisibility(View.VISIBLE);
         String name = regName.getEditText().getText().toString();
         String username = regUsername.getEditText().getText().toString();
         String email = regEmail.getEditText().getText().toString();
@@ -143,5 +153,29 @@ public class SignUp extends AppCompatActivity {
 
         UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, password);
         FirebaseDatabase.getInstance().getReference("users").child(username).setValue(helperClass);
+
+        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+        startActivity(intent);
+        finish();
+
+    }
+
+    public void callLoginScreen(View view){
+        Intent intent = new Intent(SignUp.this, Login.class);
+        Pair[] pairs = new Pair[7];
+
+        pairs[0] = new Pair<View, String>(fotoNalt, "logo_name");
+        pairs[1] = new Pair<View, String>(regLogoText, "logo_text");
+        pairs[2] = new Pair<View, String>(regSloganText, "logo_desc");
+        pairs[3] = new Pair<View, String>(regUsername, "usenrame_tran");
+        pairs[4] = new Pair<View, String>(regPassword, "password_tran");
+        pairs[5] = new Pair<View, String>(regBtn, "button_tran");
+        pairs[6] = new Pair<View, String>(regToLoginBtn, "login_signup_tran");
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp.this, pairs);
+            startActivity(intent, options.toBundle());
+
+        }
     }
 }
