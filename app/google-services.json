@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1051505766541",
+    "firebase_url": "https://merrmeqera-d3bfe.firebaseio.com",
+    "project_id": "merrmeqera-d3bfe",
+    "storage_bucket": "merrmeqera-d3bfe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051505766541:android:0e63b5abfd62d0e2edf2c4",
+        "android_client_info": {
+          "package_name": "com.fiek.merrmeqera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051505766541-o0nbjcvqnpconb57qrhfkte6pf9ta3t2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD17xOjMN62PNJGZ8iNUOkioT1L1I79XgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051505766541-o0nbjcvqnpconb57qrhfkte6pf9ta3t2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
