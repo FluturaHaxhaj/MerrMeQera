@@ -155,6 +155,7 @@ public class SignUp extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("users").child(username).setValue(helperClass);
 
         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+        intent.putExtra("emri",name);
         startActivity(intent);
         finish();
 

@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -110,7 +112,9 @@ public class Login extends AppCompatActivity {
 //                        intent.putExtra("email", emailFromDB);
 //                        intent.putExtra("phoneNo", phoneNoFromDB);
 //                        intent.putExtra("password", passwordFromDB);
+                        intent.putExtra("emri",nameFromDB);
                         startActivity(intent);
+
                         finish();
                     } else {
                         progressBar.setVisibility(View.GONE);
