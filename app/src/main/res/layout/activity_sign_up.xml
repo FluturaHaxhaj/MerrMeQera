@@ -14,7 +14,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="-15dp"
-        android:src="@drawable/icons8_home_512"
+        android:src="@drawable/homebg"
         android:transitionName="logo_name" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-20dp"
-        android:fontFamily="@font/bungee"
+        android:fontFamily="@font/raleway_semibold"
         android:text="Mirësevini"
         android:textColor="#000"
         android:textSize="40sp"
@@ -33,7 +33,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Regjistrohu dhe merr me Qera"
-        android:layout_marginTop="-20dp"
         android:transitionName="logo_desc"
         android:textSize="18sp" />
 
