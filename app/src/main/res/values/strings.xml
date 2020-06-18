@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MerrMeQera</string>
+    <string name="home">HOME</string>
+    <string name="profile">PROFILE</string>
+    <string name="logout">LOGOUT</string>
+    <string name="feedback">FEEDBACK</string>
+    <string name="favorites">FAVORITES</string>
 </resources>
