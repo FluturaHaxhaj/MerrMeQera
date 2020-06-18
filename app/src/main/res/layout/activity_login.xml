@@ -14,12 +14,12 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:transitionName="logo_image"
-        android:src="@drawable/icons8_home_512"/>
+        android:src="@drawable/homebg"/>
     <TextView
         android:id="@+id/Logo_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bungee"
+        android:fontFamily="@font/raleway_semibold"
         android:text="Përshëndetje, Mirësevini"
         android:textSize="40sp"
         android:textColor="#000"/>

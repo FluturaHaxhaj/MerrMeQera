@@ -5,4 +5,6 @@
     <string name="logout">LOGOUT</string>
     <string name="feedback">FEEDBACK</string>
     <string name="favorites">FAVORITES</string>
+    <string name="about">Rreth Nesh</string>
+    <string name="description">MerrMeQira është një aplikacion i dedikuar për qira dhe shitblerje të patundshmërive ekskluzivisht në Prishtinë. </string>
 </resources>
