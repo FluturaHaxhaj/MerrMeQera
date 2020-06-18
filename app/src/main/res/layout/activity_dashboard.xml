@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/back2">
+        android:background="@drawable/dash">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="40dp"
-            android:text="Shtepi dhe Banesa"
+            android:text="Shtëpi dhe Banesa"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             app:fontFamily="@font/baloo"
@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Zgjedh e merr"
+            android:text="&quot; Ne do ju drejtojmë për në shtëpi &quot;"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
@@ -101,7 +101,7 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/cardhome" />
+                        app:srcCompat="@drawable/foto1" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -133,7 +133,7 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/pinpoint" />
+                        app:srcCompat="@drawable/foto2" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
@@ -176,7 +176,7 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/cardhuman" />
+                        app:srcCompat="@drawable/foto3" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -208,7 +208,7 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/cardclock" />
+                        app:srcCompat="@drawable/foto4" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
