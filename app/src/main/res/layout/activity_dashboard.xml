@@ -5,14 +5,13 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
     tools:context=".MainActivity">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="right"
+        android:layout_gravity="start"
         android:background="@color/cardview_light_background"
         app:headerLayout="@layout/menu_header"
         app:itemHorizontalPadding="30dp"
@@ -22,6 +21,7 @@
 
 
     <ScrollView
+        android:id="@+id/content_dash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/cardview_light_background">
@@ -32,17 +32,15 @@
             android:background="@drawable/dash">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/menu_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="365dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/menu_background"
-                android:clickable="true"
+                android:layout_marginEnd="345dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/menu" />
+                app:srcCompat="@drawable/ic_baseline_menu_24" />
 
 
             <TextView
@@ -50,14 +48,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="35dp"
                 android:text="Shtëpi dhe Banesa"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"
                 app:fontFamily="@font/baloo"
                 app:layout_constraintEnd_toStartOf="@+id/imageView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/menu_icon" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -176,8 +174,10 @@
                     app:cardCornerRadius="30dp">
 
                     <RelativeLayout
+                        android:id="@+id/rreth_nesh"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:clickable="true">
 
                         <TextView
                             android:id="@+id/textView8"
