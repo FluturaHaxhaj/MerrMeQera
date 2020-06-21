@@ -1,11 +1,10 @@
-package com.fiek.ppmapp;
+package com.fiek.ppmapp.LoginSignup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,8 +13,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.fiek.ppmapp.Home.Dashboard;
+import com.fiek.ppmapp.R;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -154,8 +154,10 @@ public class SignUp extends AppCompatActivity {
         UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, password);
         FirebaseDatabase.getInstance().getReference("users").child(username).setValue(helperClass);
 
+        SessionManager sessionManager = new SessionManager(SignUp.this,SessionManager.SESSION_USERSESSION);
+        sessionManager.createLoginSession(name,username,phoneNo,email,password);
+
         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
-        intent.putExtra("emri",name);
         startActivity(intent);
         finish();
 

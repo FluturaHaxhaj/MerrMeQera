@@ -1,13 +1,8 @@
-package com.fiek.ppmapp;
+package com.fiek.ppmapp.MenuItems;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -17,9 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
-import com.google.firebase.auth.FederatedAuthProvider;
+import com.fiek.ppmapp.R;
 
 public class Feedback extends AppCompatActivity {
     RatingBar mRatingBar;

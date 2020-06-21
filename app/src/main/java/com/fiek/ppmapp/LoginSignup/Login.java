@@ -1,24 +1,23 @@
-package com.fiek.ppmapp;
+package com.fiek.ppmapp.LoginSignup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.fiek.ppmapp.Home.Dashboard;
+import com.fiek.ppmapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -144,14 +143,7 @@ public class Login extends AppCompatActivity {
 
 
                         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
-//                        intent.putExtra("name", nameFromDB);
-//                        intent.putExtra("username", usernameFromDB);
-//                        intent.putExtra("email", emailFromDB);
-//                        intent.putExtra("phoneNo", phoneNoFromDB);
-//                        intent.putExtra("password", passwordFromDB);
-                        intent.putExtra("emri",nameFromDB);
                         startActivity(intent);
-
                         finish();
                     } else {
                         progressBar.setVisibility(View.GONE);

@@ -1,4 +1,4 @@
-package com.fiek.ppmapp;
+package com.fiek.ppmapp.Home;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.fiek.ppmapp.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.Objects;

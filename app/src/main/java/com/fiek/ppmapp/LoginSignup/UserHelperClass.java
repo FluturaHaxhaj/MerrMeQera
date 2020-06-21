@@ -1,4 +1,4 @@
-package com.fiek.ppmapp;
+package com.fiek.ppmapp.LoginSignup;
 
 public class UserHelperClass {
     String name, username, email, phoneNo, password;

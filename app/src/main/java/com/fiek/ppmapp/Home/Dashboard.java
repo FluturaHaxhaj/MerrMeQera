@@ -1,4 +1,4 @@
-package com.fiek.ppmapp;
+package com.fiek.ppmapp.Home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,13 +11,14 @@ import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fiek.ppmapp.MenuItems.Feedback;
+import com.fiek.ppmapp.R;
+import com.fiek.ppmapp.LoginSignup.SessionManager;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
@@ -38,6 +39,9 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_dashboard);
 
+
+
+
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         rrethNesh = findViewById(R.id.rreth_nesh);
@@ -45,11 +49,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         View header = navigationView.getHeaderView(0);
         profilePic = header.findViewById(R.id.profile_pic);
         menuProfileName = header.findViewById(R.id.menu_profile_name);
-
-        if (getIntent().getExtras() != null)
-            strExtras = getIntent().getExtras().getString("emri");
-
-        Toast.makeText(Dashboard.this, strExtras + " jeni lloguar me sukses!", Toast.LENGTH_LONG).show();
 
 
         rrethNesh.setOnClickListener(new View.OnClickListener() {
@@ -71,9 +70,11 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
     }
     private void showUserName() {
-        Intent intent = getIntent();
-        String menuName = intent.getStringExtra("emri");
-        menuProfileName.setText(menuName);
+        SessionManager sessionManager = new SessionManager(Dashboard.this,SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> usersDetails = sessionManager.getUsersDetailFromSession();
+        String fullName = usersDetails.get(SessionManager.KEY_NAME);
+        Toast.makeText(Dashboard.this, fullName + " jeni lloguar me sukses!", Toast.LENGTH_LONG).show();
+        menuProfileName.setText(fullName);
     }
 
 
@@ -114,8 +115,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         switch (menuItem.getItemId()){
 
             case R.id.nav_feedback:
-                startActivity(new Intent(getApplicationContext(),Feedback.class));
-                menuItem.setCheckable(false);
+                startActivity(new Intent(getApplicationContext(), Feedback.class));
                 break;
 
         }
