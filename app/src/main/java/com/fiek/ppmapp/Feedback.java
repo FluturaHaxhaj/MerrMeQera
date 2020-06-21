@@ -1,21 +1,32 @@
 package com.fiek.ppmapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
+import com.google.firebase.auth.FederatedAuthProvider;
 
 public class Feedback extends AppCompatActivity {
     RatingBar mRatingBar;
     TextView mRatingScale;
     EditText mFeedback;
     Button mSendFeedback;
+    ImageView backBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +38,7 @@ public class Feedback extends AppCompatActivity {
         mRatingScale = (TextView) findViewById(R.id.tvRatingScale);
         mFeedback = (EditText) findViewById(R.id.etFeedback);
         mSendFeedback = (Button) findViewById(R.id.btnSubmit);
+        backBtn = findViewById(R.id.back_btn_feedback);
 
         mRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -67,5 +79,17 @@ public class Feedback extends AppCompatActivity {
             }
         });
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Feedback.super.onBackPressed();
+            }
+        });
+
+
+
     }
+
+
+
 }

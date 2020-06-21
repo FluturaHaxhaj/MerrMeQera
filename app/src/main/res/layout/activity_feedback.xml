@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Feedback"
-    android:background="@drawable/rate">
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rate"
+    tools:context=".Feedback">
+
+
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:stepSize="1"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
+
         <TextView
             android:id="@+id/tvRatingScale"
             android:layout_width="wrap_content"
@@ -25,18 +29,20 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="Perfekt"
+            android:textColor="@android:color/white"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"/>
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/etFeedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:hint="Çfarë të pëlqeu?"
             android:gravity="top"
-            android:textColor="@android:color/white"/>
+            android:hint="Çfarë të pëlqeu?"
+            android:inputType="textMultiLine"
+            android:textColor="@android:color/black" />
         />
+
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="match_parent"
@@ -47,4 +53,14 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/back_btn_feedback"
+        android:layout_width="46dp"
+        android:layout_height="51dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+        tools:ignore="VectorDrawableCompat" />
+
 </RelativeLayout>
+

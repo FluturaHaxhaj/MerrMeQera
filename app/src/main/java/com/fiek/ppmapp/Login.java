@@ -103,15 +103,7 @@ public class Login extends AppCompatActivity {
                         username.setError(null);
                         username.setErrorEnabled(false);
                         String nameFromDB = dataSnapshot.child(userEnteredUsername).child("name").getValue(String.class);
-                        String usernameFromDB = dataSnapshot.child(userEnteredUsername).child("username").getValue(String.class);
-                        String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
-                        String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
                         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
-//                        intent.putExtra("name", nameFromDB);
-//                        intent.putExtra("username", usernameFromDB);
-//                        intent.putExtra("email", emailFromDB);
-//                        intent.putExtra("phoneNo", phoneNoFromDB);
-//                        intent.putExtra("password", passwordFromDB);
                         intent.putExtra("emri",nameFromDB);
                         startActivity(intent);
 
