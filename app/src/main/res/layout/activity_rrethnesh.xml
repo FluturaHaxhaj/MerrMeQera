@@ -49,7 +49,7 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"/>
 
-
+        
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
