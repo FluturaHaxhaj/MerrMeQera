@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.palette.graphics.Palette;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.fiek.ppmapp.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
 
@@ -23,21 +26,26 @@ public class Rrethnesh extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_rrethnesh);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-        final CollapsingToolbarLayout collapsingToolbarLayout=findViewById(R.id.collapsingToolbarLayout);
-
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.bg);
-        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener(){
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onGenerated(@Nullable Palette palette) {
-                if(palette != null){
-                    collapsingToolbarLayout.setContentScrimColor(palette.getMutedColor(R.attr.colorPrimary));
-                }
+            public void onClick(View view) {
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody="Përshëndetje!!";
+
+                String compose = "Përshëndetje!!Dëshiroje të të kontaktojë rreth MerrMeQira.";
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT,"Subject:");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, compose);
+                startActivity(Intent.createChooser(sharingIntent,"Flutura"));
             }
         });
+
+
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout1);
+        collapsingToolbar.setTitle("");
+
     }
+
 }

@@ -7,4 +7,6 @@
     <color name="black">#000</color>
     <color name="background_swipe">#C4C4FF</color>
     <color name="colorDarkSemiTransparent">#C6000000</color>
+    <color name="colorText">#48889c</color>
+
 </resources>
