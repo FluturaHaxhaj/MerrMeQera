@@ -119,7 +119,6 @@ public class Login extends AppCompatActivity {
             sessionManager.createRememberSession(userEnteredUsername,userEnteredPassword);
         }
 
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
         Query checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -138,7 +137,7 @@ public class Login extends AppCompatActivity {
                         String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
 
 
-                        //Session
+                        //User Session
                         SessionManager sessionManager = new SessionManager(Login.this,SessionManager.SESSION_USERSESSION);
                         sessionManager.createLoginSession(nameFromDB,usernameFromDB,phoneNoFromDB,emailFromDB,passwordFromDB);
 
