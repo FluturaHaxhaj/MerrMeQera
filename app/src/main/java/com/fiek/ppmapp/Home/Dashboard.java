@@ -1,11 +1,17 @@
 package com.fiek.ppmapp.Home;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
@@ -23,10 +29,10 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
 
-public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final int RESULT_LOAD_IMAGE = 1;
-    String strExtras;
+    public static final int CAMERA_PERM_CODE = 101;
+    public static final int CAMERA_REQUEST_CODE = 102;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     RelativeLayout rrethNesh;
@@ -63,12 +69,55 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
 
+        profilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                askCameraPermission();
+            }
 
-        profilePic.setOnClickListener(this);
+
+        });
+
+
         navigationDrawer();
         showUserName();
 
     }
+
+    private void askCameraPermission() {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
+        }else {
+            openCamera();
+        }
+
+    }
+
+    private void openCamera() {
+        Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(camera, CAMERA_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == CAMERA_REQUEST_CODE){
+            Bitmap image = (Bitmap) data.getExtras().get("data");
+            profilePic.setImageBitmap(image);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == CAMERA_PERM_CODE){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+            }else {
+                Toast.makeText(this,"Per te perdorur kameren ju duhet te jepni akses ne kamere.",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
     private void showUserName() {
         SessionManager sessionManager = new SessionManager(Dashboard.this,SessionManager.SESSION_USERSESSION);
         HashMap<String, String> usersDetails = sessionManager.getUsersDetailFromSession();
@@ -109,6 +158,8 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         }
 
     }
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -116,18 +167,15 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
             case R.id.nav_feedback:
                 startActivity(new Intent(getApplicationContext(), Feedback.class));
+                menuItem.setCheckable(false);
                 break;
+            case R.id.nav_home:
+                startActivity(new Intent(getApplicationContext(),Dashboard.class));
+                break;
+
 
         }
         return true;
     }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.profile_pic:
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
-        }
 
-    }
 }
