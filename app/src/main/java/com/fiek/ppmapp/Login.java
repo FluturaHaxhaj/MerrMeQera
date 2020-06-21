@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -23,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 
 public class Login extends AppCompatActivity {
 
@@ -30,6 +36,8 @@ public class Login extends AppCompatActivity {
     ImageView image;
     TextView logoText, sloganText;
     TextInputLayout username, password;
+    EditText  usernameEditText , passwordEditText;
+    CheckBox remember;
     ProgressBar progressBar;
 
     @Override
@@ -45,8 +53,20 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         login_btn = findViewById(R.id.login_btn);
+        remember = findViewById(R.id.remember);
+        usernameEditText = findViewById(R.id.usernameEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
+
+
+        SessionManager sessionManager = new SessionManager(Login.this,SessionManager.SESSION_REMEMBER);
+        if(sessionManager.checkRemember()){
+            HashMap<String,String> rememberDetais = sessionManager.getRememberDetailFromSession();
+            usernameEditText.setText(rememberDetais.get(SessionManager.KEY_SESSIONUSERNAME));
+            passwordEditText.setText(rememberDetais.get(SessionManager.KEY_SESSIONPASSWORD));
+
+        }
 
     }
 
@@ -84,12 +104,22 @@ public class Login extends AppCompatActivity {
         } else {
             isUser();
         }
+
     }
+
+
 
     private void isUser() {
         progressBar.setVisibility(View.VISIBLE);
         final String userEnteredUsername = username.getEditText().getText().toString().trim();
         final String userEnteredPassword = password.getEditText().getText().toString().trim();
+
+        if(remember.isChecked()){
+            SessionManager sessionManager = new SessionManager(Login.this,SessionManager.SESSION_REMEMBER);
+            sessionManager.createRememberSession(userEnteredUsername,userEnteredPassword);
+        }
+
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
         Query checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -103,7 +133,23 @@ public class Login extends AppCompatActivity {
                         username.setError(null);
                         username.setErrorEnabled(false);
                         String nameFromDB = dataSnapshot.child(userEnteredUsername).child("name").getValue(String.class);
+                        String usernameFromDB = dataSnapshot.child(userEnteredUsername).child("username").getValue(String.class);
+                        String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
+                        String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
+
+
+                        //Session
+                        SessionManager sessionManager = new SessionManager(Login.this,SessionManager.SESSION_USERSESSION);
+                        sessionManager.createLoginSession(nameFromDB,usernameFromDB,phoneNoFromDB,emailFromDB,passwordFromDB);
+
+
+
                         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+//                        intent.putExtra("name", nameFromDB);
+//                        intent.putExtra("username", usernameFromDB);
+//                        intent.putExtra("email", emailFromDB);
+//                        intent.putExtra("phoneNo", phoneNoFromDB);
+//                        intent.putExtra("password", passwordFromDB);
                         intent.putExtra("emri",nameFromDB);
                         startActivity(intent);
 
@@ -128,6 +174,7 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
 
     public void callSignUpScreen(View view){
         Intent intent = new Intent(Login.this, SignUp.class);

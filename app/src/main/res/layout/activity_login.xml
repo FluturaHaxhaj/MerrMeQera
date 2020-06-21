@@ -45,6 +45,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -59,12 +60,29 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+        
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp">
+          <CheckBox
+              android:id="@+id/remember"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+              android:text="@string/remember"
+              android:buttonTint="@color/black"
+              android:textColor="@color/black"/>
+
+
+      </LinearLayout>
 
         <Button
             android:id="@+id/login_btn"
