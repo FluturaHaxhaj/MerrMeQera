@@ -5,14 +5,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,8 +30,20 @@ import com.fiek.ppmapp.Map.MapActivity;
 import com.fiek.ppmapp.MenuItems.Feedback;
 import com.fiek.ppmapp.R;
 import com.fiek.ppmapp.LoginSignup.SessionManager;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,6 +55,12 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     RelativeLayout rrethNesh, lokacioni;
     ImageView menuIcon, profilePic;
     TextView menuProfileName;
+    String currentPhotoPath;
+    StorageReference storageReference;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +78,10 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         View header = navigationView.getHeaderView(0);
         profilePic = header.findViewById(R.id.profile_pic);
         menuProfileName = header.findViewById(R.id.menu_profile_name);
+
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+
 
 
         rrethNesh.setOnClickListener(new View.OnClickListener() {
@@ -82,13 +108,22 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             public void onClick(View v) {
                 askCameraPermission();
             }
-
-
         });
 
 
-        navigationDrawer();
-        showUserName();
+
+        String fullName = showUserName();
+
+        Toast.makeText(Dashboard.this, fullName + " jeni lloguar me sukses!", Toast.LENGTH_LONG).show();
+        menuProfileName.setText(fullName);
+
+        StorageReference profileRef = storageReference.child("users/"+fullName+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profilePic);
+            }
+        });
 
     }
 
@@ -96,42 +131,108 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
         }else {
-            openCamera();
+            dispatchTakePictureIntent();
         }
 
-    }
-
-    private void openCamera() {
-        Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(camera, CAMERA_REQUEST_CODE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CAMERA_REQUEST_CODE){
-            Bitmap image = (Bitmap) data.getExtras().get("data");
-            profilePic.setImageBitmap(image);
-        }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == CAMERA_PERM_CODE){
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-
+                dispatchTakePictureIntent();
             }else {
                 Toast.makeText(this,"Per te perdorur kameren ju duhet te jepni akses ne kamere.",Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private void showUserName() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == CAMERA_REQUEST_CODE){
+            if (resultCode == Activity.RESULT_OK){
+                File f = new File(currentPhotoPath);
+                //profilePic.setImageURI(Uri.fromFile(f));
+
+                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                Uri contentUri = Uri.fromFile(f);
+                mediaScanIntent.setData(contentUri);
+                this.sendBroadcast(mediaScanIntent);
+
+                uploadImageToFirebase(contentUri);
+            }
+        }
+    }
+
+    private void uploadImageToFirebase(Uri imageUri) {
+        String fullName = showUserName();
+        StorageReference fileRef = storageReference.child("users/"+fullName+"/profile.jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(profilePic);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Dashboard.this,"Deshtoi.",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.fiek.android.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE );
+            }
+        }
+    }
+
+
+    private String showUserName() {
         SessionManager sessionManager = new SessionManager(Dashboard.this,SessionManager.SESSION_USERSESSION);
         HashMap<String, String> usersDetails = sessionManager.getUsersDetailFromSession();
         String fullName = usersDetails.get(SessionManager.KEY_NAME);
-        Toast.makeText(Dashboard.this, fullName + " jeni lloguar me sukses!", Toast.LENGTH_LONG).show();
-        menuProfileName.setText(fullName);
+        return fullName;
     }
 
 

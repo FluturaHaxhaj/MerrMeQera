@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.fiek.ppmapp.Home.Dashboard;
 import com.fiek.ppmapp.R;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,7 +33,8 @@ import java.util.HashMap;
 public class Login extends AppCompatActivity {
 
     Button callSignUp, login_btn;
-    ImageView image;
+    ImageView image,profilePic;
+    NavigationView navigationView;
     TextView logoText, sloganText;
     TextInputLayout username, password;
     EditText  usernameEditText , passwordEditText;
