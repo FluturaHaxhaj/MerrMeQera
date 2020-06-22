@@ -65,7 +65,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 startActivity(rrethNeshIntent);
             }
         });
-
         lokacioni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
