@@ -121,8 +121,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-//                Picasso.get().load(uri).into(profilePic);
-                profilePic.setImageURI(uri);
+                Picasso.get().load(uri).into(profilePic);
             }
         });
 
@@ -175,8 +174,8 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-//                        Picasso.get().load(uri).into(profilePic);
-                        profilePic.setImageURI(uri);
+                        Picasso.get().load(uri).into(profilePic);
+
                     }
                 });
             }
