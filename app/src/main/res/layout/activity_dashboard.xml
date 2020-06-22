@@ -131,6 +131,7 @@
                     app:cardCornerRadius="30dp">
 
                     <RelativeLayout
+                        android:id="@+id/lokacioni"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 

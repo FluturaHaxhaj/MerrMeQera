@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fiek.ppmapp.Map.MapActivity;
 import com.fiek.ppmapp.MenuItems.Feedback;
 import com.fiek.ppmapp.R;
 import com.fiek.ppmapp.LoginSignup.SessionManager;
@@ -35,7 +36,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     public static final int CAMERA_REQUEST_CODE = 102;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    RelativeLayout rrethNesh;
+    RelativeLayout rrethNesh, lokacioni;
     ImageView menuIcon, profilePic;
     TextView menuProfileName;
 
@@ -47,7 +48,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
 
 
-
+        lokacioni = findViewById(R.id.lokacioni);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         rrethNesh = findViewById(R.id.rreth_nesh);
@@ -62,6 +63,14 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             public void onClick(View v) {
                 Intent rrethNeshIntent = new Intent(getApplicationContext(), Rrethnesh.class);
                 startActivity(rrethNeshIntent);
+            }
+        });
+
+        lokacioni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lokacioniIntent = new Intent(getApplicationContext(), MapActivity.class);
+                startActivity(lokacioniIntent);
             }
         });
 
