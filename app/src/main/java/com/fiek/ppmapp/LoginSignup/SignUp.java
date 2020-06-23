@@ -19,6 +19,12 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Arrays;
+
 
 public class SignUp extends AppCompatActivity {
 
@@ -152,7 +158,9 @@ public class SignUp extends AppCompatActivity {
         String phoneNo = regPhoneNo.getEditText().getText().toString();
         String password = regPassword.getEditText().getText().toString();
 
-        UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, password);
+        String pwd =  createPassword(password);
+
+        UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, pwd);
         FirebaseDatabase.getInstance().getReference("users").child(username).setValue(helperClass);
 
         SessionManager sessionManager = new SessionManager(SignUp.this,SessionManager.SESSION_USERSESSION);
@@ -163,6 +171,29 @@ public class SignUp extends AppCompatActivity {
         finish();
 
     }
+    public  String createPassword(String password) {
+        try {
+            byte[] salt = createSalt();
+            String saltString = salt.toString();
+            String saltedPassword = saltString+password;
+            MessageDigest md = MessageDigest.getInstance("SHA");
+            byte[] messageDigest = md.digest(saltedPassword.getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+            String hashtext = no.toString(16);
+            return saltString+"/"+hashtext;
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static byte[] createSalt(){
+        byte[] bytes = new byte[20];
+        SecureRandom random = new SecureRandom();
+        random.nextBytes(bytes);
+        return bytes;
+    }
+
 
     public void callLoginScreen(View view){
         Intent intent = new Intent(SignUp.this, Login.class);

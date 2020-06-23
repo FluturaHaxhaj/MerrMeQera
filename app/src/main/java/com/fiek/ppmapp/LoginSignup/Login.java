@@ -27,6 +27,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 
@@ -129,29 +132,33 @@ public class Login extends AppCompatActivity {
                     username.setError(null);
                     username.setErrorEnabled(false);
                     String passwordFromDB = dataSnapshot.child(userEnteredUsername).child("password").getValue(String.class);
-                    if (passwordFromDB.equals(userEnteredPassword)) {
-                        username.setError(null);
-                        username.setErrorEnabled(false);
-                        String nameFromDB = dataSnapshot.child(userEnteredUsername).child("name").getValue(String.class);
-                        String usernameFromDB = dataSnapshot.child(userEnteredUsername).child("username").getValue(String.class);
-                        String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
-                        String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
+                    try {
+                        if (checkPassword(userEnteredPassword,passwordFromDB)) {
+                            username.setError(null);
+                            username.setErrorEnabled(false);
+                            String nameFromDB = dataSnapshot.child(userEnteredUsername).child("name").getValue(String.class);
+                            String usernameFromDB = dataSnapshot.child(userEnteredUsername).child("username").getValue(String.class);
+                            String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
+                            String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
 
 
-                        //User Session
-                        SessionManager sessionManager = new SessionManager(Login.this,SessionManager.SESSION_USERSESSION);
-                        sessionManager.createLoginSession(nameFromDB,usernameFromDB,phoneNoFromDB,emailFromDB,passwordFromDB);
+                            //User Session
+                            SessionManager sessionManager = new SessionManager(Login.this,SessionManager.SESSION_USERSESSION);
+                            sessionManager.createLoginSession(nameFromDB,usernameFromDB,phoneNoFromDB,emailFromDB,passwordFromDB);
 
 
 
-                        Intent intent = new Intent(getApplicationContext(), Dashboard.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        progressBar.setVisibility(View.GONE);
-                        username.setError("Emri i perdoruesit ose fjalekalimi eshte gabim");
-                        password.setError("Emri i perdoruesit ose fjalekalimi eshte gabim");
-                        password.requestFocus();
+                            Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            username.setError("Emri i perdoruesit ose fjalekalimi eshte gabim");
+                            password.setError("Emri i perdoruesit ose fjalekalimi eshte gabim");
+                            password.requestFocus();
+                        }
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
                     }
                 } else {
                     progressBar.setVisibility(View.GONE);
@@ -166,6 +173,24 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
+    public boolean checkPassword(String password,String SaltedHash) throws NoSuchAlgorithmException {
+
+        String[] parts = SaltedHash.split("/");
+        String saltString = parts[0];
+        String hash = parts[1];
+
+        String passwordCandidate = saltString+password;
+
+        MessageDigest md = MessageDigest.getInstance("SHA");
+        byte[] messageDigest = md.digest(passwordCandidate.getBytes());
+        BigInteger no = new BigInteger(1, messageDigest);
+        String hashtext = no.toString(16);
+        if(hash.equals(hashtext)) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
 
