@@ -43,7 +43,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private JSONArray readAssets(){
         try{
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getAssets().open("places.json")));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getAssets().open("places.json")));
             String line = "";
             StringBuilder stringBuilder = new StringBuilder("");
             while ((line = bufferedReader.readLine()) != null){
