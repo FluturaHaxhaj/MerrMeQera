@@ -3,6 +3,7 @@ package com.fiek.ppmapp.Home;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -26,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fiek.ppmapp.LoginSignup.Login;
 import com.fiek.ppmapp.Map.MapActivity;
 import com.fiek.ppmapp.MenuItems.Feedback;
 import com.fiek.ppmapp.R;
@@ -33,6 +35,7 @@ import com.fiek.ppmapp.LoginSignup.SessionManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -283,6 +286,9 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 startActivity(new Intent(getApplicationContext(),Dashboard.class));
                 break;
 
+            case R.id.nav_logout:
+                startActivity(new Intent(getApplicationContext(), Login.class));
+                Toast.makeText(Dashboard.this,"Jeni shkyqur me sukses",Toast.LENGTH_SHORT).show();
 
         }
         return true;
