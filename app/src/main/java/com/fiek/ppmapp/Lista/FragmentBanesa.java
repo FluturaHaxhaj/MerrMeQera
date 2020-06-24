@@ -46,9 +46,7 @@ public class FragmentBanesa extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
       v = inflater.inflate(R.layout.banesa_fragment,container,false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerviewid);
-        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(getContext(),lstBanesa) ;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(myadapter);
+
     return v;
 
     }
@@ -57,19 +55,19 @@ public class FragmentBanesa extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lstBanesa = new ArrayList<>();
-
         RequestTask requestTask = new RequestTask();
         requestTask.execute();
     }
 
     private class RequestTask extends AsyncTask<Void,Void,Void>{
+
         @Override
         protected Void doInBackground(Void... voids) {
             jsonrequest();
-
             return null;
         }
     }
+
     private void jsonrequest() {
 
         request = new JsonArrayRequest(JSON_URL, response -> {
@@ -88,6 +86,7 @@ public class FragmentBanesa extends Fragment {
                     banesa.setCmimi(jsonObject.getString("cmimi"));
                     banesa.setSiperfaqja(jsonObject.getString("siperfaqja"));
                     banesa.setDhoma(jsonObject.getString("dhoma"));
+//                    banesa.setTel(jsonObject.getString("tel"));
                     banesa.setImage_url(jsonObject.getString("image_url"));
                     lstBanesa.add(banesa);
 
@@ -111,7 +110,9 @@ public class FragmentBanesa extends Fragment {
     }
 
     private void setuprecyclerview(List<Banesa> lstBanesa) {
-
+        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(getContext(),lstBanesa) ;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(myadapter);
 
     }
 }

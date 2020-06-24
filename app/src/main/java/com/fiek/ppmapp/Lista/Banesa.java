@@ -23,6 +23,14 @@ public class Banesa {
         this.image_url = image_url;
     }
 
+//    public String getTel() {
+//        return tel;
+//    }
+//
+//    public void setTel(String tel) {
+//        this.tel = tel;
+//    }
+
     public String getBanesa() {
         return banesa;
     }
