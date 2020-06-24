@@ -5,9 +5,14 @@ import com.fiek.ppmapp.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -15,9 +20,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ShtepiActivity extends AppCompatActivity {
+    private static final int REQUEST_CALL = 1;
 
+    String telefoni;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +38,7 @@ public class ShtepiActivity extends AppCompatActivity {
         String cmimi = getIntent().getExtras().getString("sh_cmimi");
         String siperfaqja = getIntent().getExtras().getString("sh_siperfaqja");
         String kate = getIntent().getExtras().getString("sh_kate");
-        String telefoni = getIntent().getExtras().getString("sh_tel");
+        telefoni = getIntent().getExtras().getString("sh_tel");
         String image_url = getIntent().getExtras().getString("sh_img");
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.shcollapsingtoolbar_id);
@@ -57,16 +65,33 @@ public class ShtepiActivity extends AppCompatActivity {
         telBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(telefoni));
-                startActivity(callIntent);
+                makePhoneCall();
             }
         });
         RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
 
         Glide.with(this).load(image_url).apply(requestOptions).into(img);
 
+    }
+    private void makePhoneCall(){
+        String numri = telefoni;
+        if (ContextCompat.checkSelfPermission(ShtepiActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(ShtepiActivity.this,
+                    new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL);
+        }else {
+            String dial = "tel:"+numri;
+            startActivity(new Intent(Intent.ACTION_CALL,Uri.parse(dial)));
+        }
+    }
 
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CALL){
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                makePhoneCall();
+            }else {
+                Toast.makeText(this,"Nuk keni akses",Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
