@@ -18,7 +18,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
         super(fm);
     }
-        @Override
+    @Override
     public Fragment getItem(int position) {
         return lstFragment.get(position);
     }
@@ -34,7 +34,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return lstTitles.get(position);
     }
 
-    public void AddFragment (Fragment fragment, String title){
+    public void AddFragment (Fragment fragment,String title){
         lstFragment.add(fragment);
         lstTitles.add(title);
     }

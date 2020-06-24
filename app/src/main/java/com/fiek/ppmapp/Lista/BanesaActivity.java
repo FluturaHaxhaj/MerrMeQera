@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.fiek.ppmapp.R;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,7 +15,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.fiek.ppmapp.R;
 
 public class BanesaActivity extends AppCompatActivity {
 

@@ -17,13 +17,13 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class RecyclerViewAdapterShtepi extends RecyclerView.Adapter<RecyclerViewAdapterShtepi.MyViewHolder> {
 
     private Context mContext;
-    private List<Banesa> mData;
+    private List<Shtepi> mData;
     RequestOptions option;
 
-    public RecyclerViewAdapter(Context mContext, List<Banesa> mData) {
+    public RecyclerViewAdapterShtepi(Context mContext, List<Shtepi> mData) {
         this.mContext = mContext;
         this.mData = mData;
 
@@ -36,20 +36,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         View view;
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        view = inflater.inflate(R.layout.banesa_row_item, parent, false);
+        view = inflater.inflate(R.layout.shtepi_row_item, parent, false);
         final MyViewHolder viewHolder = new MyViewHolder(view);
         viewHolder.view_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(mContext, BanesaActivity.class);
-                i.putExtra("b_banesa", mData.get(viewHolder.getAdapterPosition()).getBanesa());
-                i.putExtra("b_pershkrimi", mData.get(viewHolder.getAdapterPosition()).getPershkrimi());
-                i.putExtra("b_lokacioni", mData.get(viewHolder.getAdapterPosition()).getLokacioni());
-                i.putExtra("b_cmimi", mData.get(viewHolder.getAdapterPosition()).getCmimi());
-                i.putExtra("b_siperfaqja", mData.get(viewHolder.getAdapterPosition()).getSiperfaqja());
-                i.putExtra("b_dhoma", mData.get(viewHolder.getAdapterPosition()).getDhoma());
-                i.putExtra("b_img", mData.get(viewHolder.getAdapterPosition()).getImage_url());
+                Intent i = new Intent(mContext, ShtepiActivity.class);
+                i.putExtra("sh_shtepi", mData.get(viewHolder.getAdapterPosition()).getShtepi());
+                i.putExtra("sh_pershkrimi", mData.get(viewHolder.getAdapterPosition()).getPershkrimi());
+                i.putExtra("sh_lokacioni", mData.get(viewHolder.getAdapterPosition()).getLokacioni());
+                i.putExtra("sh_cmimi", mData.get(viewHolder.getAdapterPosition()).getCmimi());
+                i.putExtra("sh_siperfaqja", mData.get(viewHolder.getAdapterPosition()).getSiperfaqja());
+                i.putExtra("sh_kate", mData.get(viewHolder.getAdapterPosition()).getKate());
+                i.putExtra("sh_tel",mData.get(viewHolder.getAdapterPosition()).getTelefoni());
+                i.putExtra("sh_img", mData.get(viewHolder.getAdapterPosition()).getImage_url());
+
 
                 mContext.startActivity(i);
             }
@@ -63,7 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         holder.tv_cmimi.setText(mData.get(position).getCmimi());
-        holder.tv_banesa.setText(mData.get(position).getBanesa()+", "+mData.get(position).getDhoma()+"dhoma, "+mData.get(position).getSiperfaqja());
+        holder.tv_shtepi.setText(mData.get(position).getShtepi()+", "+mData.get(position).getKate()+"kate, "+mData.get(position).getSiperfaqja());
         holder.tv_lokacioni.setText(mData.get(position).getLokacioni());
 
         //Load image from the internet and set it into ImageView using Glide
@@ -78,7 +80,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_cmimi;
-        TextView tv_banesa;
+        TextView tv_shtepi;
         TextView tv_lokacioni;
         ImageView img_thumbnail;
         LinearLayout view_container;
@@ -88,11 +90,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            view_container = itemView.findViewById(R.id.container);
-            tv_cmimi = itemView.findViewById(R.id.cmimi);
-            tv_banesa = itemView.findViewById(R.id.banesa);
-            tv_lokacioni = itemView.findViewById(R.id.lokacioni);
-            img_thumbnail = itemView.findViewById(R.id.thumbnail);
+            view_container = itemView.findViewById(R.id.containershtepi);
+            tv_cmimi = itemView.findViewById(R.id.sh_cmimi);
+            tv_shtepi = itemView.findViewById(R.id.sh_shtepi);
+            tv_lokacioni = itemView.findViewById(R.id.sh_lokacioni);
+            img_thumbnail = itemView.findViewById(R.id.sh_thumbnail);
 
         }
     }
