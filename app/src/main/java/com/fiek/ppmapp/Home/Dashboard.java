@@ -3,7 +3,6 @@ package com.fiek.ppmapp.Home;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -14,8 +13,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -35,9 +34,6 @@ import com.fiek.ppmapp.LoginSignup.SessionManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -62,15 +58,11 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     StorageReference storageReference;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_dashboard);
-
 
 
         lokacioni = findViewById(R.id.lokacioni);
@@ -84,7 +76,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
 
         storageReference = FirebaseStorage.getInstance().getReference();
-
 
 
         rrethNesh.setOnClickListener(new View.OnClickListener() {
@@ -113,27 +104,34 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             }
         });
 
-
-
         String fullName = showUserName();
-
         Toast.makeText(Dashboard.this, fullName + " jeni lloguar me sukses!", Toast.LENGTH_LONG).show();
         menuProfileName.setText(fullName);
+        UploadPicTask uploadPicTask = new UploadPicTask();
+        uploadPicTask.execute(fullName);
 
-        StorageReference profileRef = storageReference.child("users/"+fullName+"/profile.jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(profilePic);
-            }
-        });
 
     }
 
+    private class UploadPicTask extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            StorageReference profileRef = storageReference.child("users/" + strings[0] + "/profile.jpg");
+            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.get().load(uri).into(profilePic);
+                }
+            });
+            return null;
+        }
+    }
+
     private void askCameraPermission() {
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
-        }else {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
+        } else {
             dispatchTakePictureIntent();
         }
 
@@ -141,11 +139,11 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == CAMERA_PERM_CODE){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == CAMERA_PERM_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 dispatchTakePictureIntent();
-            }else {
-                Toast.makeText(this,"Per te perdorur kameren ju duhet te jepni akses ne kamere.",Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Per te perdorur kameren ju duhet te jepni akses ne kamere.", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -153,8 +151,8 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CAMERA_REQUEST_CODE){
-            if (resultCode == Activity.RESULT_OK){
+        if (requestCode == CAMERA_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
                 File f = new File(currentPhotoPath);
                 //profilePic.setImageURI(Uri.fromFile(f));
 
@@ -170,7 +168,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
     private void uploadImageToFirebase(Uri imageUri) {
         String fullName = showUserName();
-        StorageReference fileRef = storageReference.child("users/"+fullName+"/profile.jpg");
+        StorageReference fileRef = storageReference.child("users/" + fullName + "/profile.jpg");
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -185,7 +183,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Dashboard.this,"Deshtoi.",Toast.LENGTH_LONG).show();
+                Toast.makeText(Dashboard.this, "Deshtoi.", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -226,45 +224,23 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                         "com.fiek.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE );
+                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
             }
         }
     }
 
 
     private String showUserName() {
-        SessionManager sessionManager = new SessionManager(Dashboard.this,SessionManager.SESSION_USERSESSION);
+        SessionManager sessionManager = new SessionManager(Dashboard.this, SessionManager.SESSION_USERSESSION);
         HashMap<String, String> usersDetails = sessionManager.getUsersDetailFromSession();
         String fullName = usersDetails.get(SessionManager.KEY_NAME);
         return fullName;
     }
 
-
-
-    private void navigationDrawer() {
-
-        navigationView.bringToFront();
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_home);
-
-        menuIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                } else {
-                    drawerLayout.openDrawer(GravityCompat.START);
-                }
-            }
-        });
-
-    }
-
-
     @Override
     public void onBackPressed() {
 
-        if(drawerLayout.isDrawerVisible(GravityCompat.START)){
+        if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
@@ -276,19 +252,19 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
 
             case R.id.nav_feedback:
                 startActivity(new Intent(getApplicationContext(), Feedback.class));
                 menuItem.setCheckable(false);
                 break;
             case R.id.nav_home:
-                startActivity(new Intent(getApplicationContext(),Dashboard.class));
+                startActivity(new Intent(getApplicationContext(), Dashboard.class));
                 break;
 
             case R.id.nav_logout:
                 startActivity(new Intent(getApplicationContext(), Login.class));
-                Toast.makeText(Dashboard.this,"Jeni shkyqur me sukses",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Dashboard.this, "Jeni shkyqur me sukses", Toast.LENGTH_SHORT).show();
 
         }
         return true;
