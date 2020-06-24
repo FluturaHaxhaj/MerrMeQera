@@ -114,7 +114,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         });
 
         String fullName = showUserName();
-        Toast.makeText(Dashboard.this, fullName + " jeni lloguar me sukses!", Toast.LENGTH_LONG).show();
         menuProfileName.setText(fullName);
         UploadPicTask uploadPicTask = new UploadPicTask();
         uploadPicTask.execute(fullName);
