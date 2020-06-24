@@ -28,7 +28,6 @@ import java.util.List;
 public class FragmentBanesa extends Fragment {
 
     private final String JSON_URL = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/ff12ac77f7476dbe56f9df8c2bd6d92960b306db/apartament.json";
-
     private RecyclerView recyclerView;
     private JsonArrayRequest request ;
     private RequestQueue requestQueue ;

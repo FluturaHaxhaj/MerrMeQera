@@ -66,7 +66,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_dashboard);
 
-
         lokacioni = findViewById(R.id.lokacioni);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
@@ -287,7 +286,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
             case R.id.nav_feedback:
                 startActivity(new Intent(getApplicationContext(), Feedback.class));
-                menuItem.setCheckable(false);
                 break;
             case R.id.nav_home:
                 startActivity(new Intent(getApplicationContext(), Dashboard.class));
@@ -296,7 +294,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             case R.id.nav_logout:
                 startActivity(new Intent(getApplicationContext(), Login.class));
                 Toast.makeText(Dashboard.this, "Jeni shkyqur me sukses", Toast.LENGTH_SHORT).show();
-
         }
         return true;
     }
