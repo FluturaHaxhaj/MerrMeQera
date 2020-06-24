@@ -8,28 +8,22 @@ public class Banesa {
     private String cmimi;
     private String siperfaqja;
     private String dhoma;
+    private String telefoni;
     private String image_url;
 
     public Banesa() {
     }
 
-    public Banesa(String banesa, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String dhoma, String image_url) {
+    public Banesa(String banesa, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String dhoma, String telefoni, String image_url) {
         this.banesa = banesa;
         this.pershkrimi = pershkrimi;
         this.lokacioni = lokacioni;
         this.cmimi = cmimi;
         this.siperfaqja = siperfaqja;
         this.dhoma = dhoma;
+        this.telefoni = telefoni;
         this.image_url = image_url;
     }
-
-//    public String getTel() {
-//        return tel;
-//    }
-//
-//    public void setTel(String tel) {
-//        this.tel = tel;
-//    }
 
     public String getBanesa() {
         return banesa;
@@ -77,6 +71,14 @@ public class Banesa {
 
     public void setDhoma(String dhoma) {
         this.dhoma = dhoma;
+    }
+
+    public String getTelefoni() {
+        return telefoni;
+    }
+
+    public void setTelefoni(String telefoni) {
+        this.telefoni = telefoni;
     }
 
     public String getImage_url() {

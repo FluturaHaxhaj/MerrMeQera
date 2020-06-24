@@ -49,6 +49,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 i.putExtra("b_cmimi", mData.get(viewHolder.getAdapterPosition()).getCmimi());
                 i.putExtra("b_siperfaqja", mData.get(viewHolder.getAdapterPosition()).getSiperfaqja());
                 i.putExtra("b_dhoma", mData.get(viewHolder.getAdapterPosition()).getDhoma());
+                i.putExtra("b_tel",mData.get(viewHolder.getAdapterPosition()).getTelefoni());
                 i.putExtra("b_img", mData.get(viewHolder.getAdapterPosition()).getImage_url());
 
                 mContext.startActivity(i);

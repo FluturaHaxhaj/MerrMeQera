@@ -30,7 +30,7 @@ public class BanesaActivity extends AppCompatActivity {
         String cmimi = getIntent().getExtras().getString("b_cmimi");
         String siperfaqja = getIntent().getExtras().getString("b_siperfaqja");
         String dhoma = getIntent().getExtras().getString("b_dhoma");
-        String tel = getIntent().getExtras().getString("b_tel");
+        String telefoni = getIntent().getExtras().getString("b_tel");
         String image_url = getIntent().getExtras().getString("b_img");
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar_id);
@@ -50,15 +50,15 @@ public class BanesaActivity extends AppCompatActivity {
         tv_dhoma.setText(dhoma);
         tv_cmimi.setText(cmimi);
         tv_pershkrimi.setText(pershkrimi);
-//        String btnText = (String) telBtn.getText();
-//        telBtn.setText(btnText+tel);
+        String btnText = (String) telBtn.getText();
+        telBtn.setText(btnText+telefoni);
         collapsingToolbarLayout.setTitle(banesa);
 
         telBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(tel));
+                callIntent.setData(Uri.parse(telefoni));
                 startActivity(callIntent);
             }
         });
