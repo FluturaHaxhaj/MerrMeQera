@@ -26,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fiek.ppmapp.Lista.Lista;
 import com.fiek.ppmapp.LoginSignup.Login;
 import com.fiek.ppmapp.Map.MapActivity;
 import com.fiek.ppmapp.MenuItems.Feedback;
@@ -35,7 +36,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.snackbar.SnackbarContentLayout;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -53,7 +53,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     public static final int CAMERA_REQUEST_CODE = 102;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    RelativeLayout rrethNesh, lokacioni;
+    RelativeLayout rrethNesh, lokacioni,listaView;
     ImageView menuIcon, profilePic;
     TextView menuProfileName;
     String currentPhotoPath;
@@ -75,6 +75,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         View header = navigationView.getHeaderView(0);
         profilePic = header.findViewById(R.id.profile_pic);
         menuProfileName = header.findViewById(R.id.menu_profile_name);
+        listaView = findViewById(R.id.lista_view_banesa);
 
 
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -92,6 +93,13 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             public void onClick(View v) {
                 Intent lokacioniIntent = new Intent(getApplicationContext(), MapActivity.class);
                 startActivity(lokacioniIntent);
+            }
+        });
+        listaView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent listaIntent = new Intent(getApplicationContext(), Lista.class);
+                startActivity(listaIntent);
             }
         });
 
