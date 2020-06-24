@@ -34,6 +34,8 @@ import com.fiek.ppmapp.LoginSignup.SessionManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.snackbar.SnackbarContentLayout;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -109,6 +111,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         menuProfileName.setText(fullName);
         UploadPicTask uploadPicTask = new UploadPicTask();
         uploadPicTask.execute(fullName);
+        naviagtionDrawer();
 
 
     }
@@ -176,15 +179,19 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.get().load(uri).into(profilePic);
-
                     }
                 });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Dashboard.this, "Deshtoi.", Toast.LENGTH_LONG).show();
-
+                Snackbar.make(drawerLayout,"Ngarkimi i fotos deshtoi.",Snackbar.LENGTH_LONG)
+                        .setAction("Provo Perseri", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                askCameraPermission();
+                            }
+                        });
             }
         });
 
@@ -248,6 +255,22 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
+    private void naviagtionDrawer(){
+
+        //Naviagtion Drawer
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_home);
+
+        menuIcon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if(drawerLayout.isDrawerVisible(GravityCompat.START))
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                else drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
