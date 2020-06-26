@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home.Rregulladetails"></activity>
+        <activity android:name=".Favorites.FavoritesActivity"></activity>
+        <activity android:name=".Home.Rregulladetails" />
         <activity android:name=".Home.Rregulla" />
         <activity android:name=".Lista.ShtepiActivity" />
         <activity android:name=".Lista.Lista" />

@@ -26,6 +26,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fiek.ppmapp.Favorites.FavoritesActivity;
+import com.fiek.ppmapp.Favorites.FavoritesFragment;
 import com.fiek.ppmapp.Lista.Lista;
 import com.fiek.ppmapp.LoginSignup.Login;
 import com.fiek.ppmapp.Map.MapActivity;
@@ -297,10 +299,14 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             case R.id.nav_home:
                 startActivity(new Intent(getApplicationContext(), Dashboard.class));
                 break;
+            case R.id.nav_favorites:
+                startActivity(new Intent(getApplicationContext(), FavoritesActivity.class));
+                break;
 
             case R.id.nav_logout:
                 startActivity(new Intent(getApplicationContext(), Login.class));
                 Toast.makeText(Dashboard.this, "Jeni shkyqur me sukses", Toast.LENGTH_SHORT).show();
+                break;
         }
         return true;
     }

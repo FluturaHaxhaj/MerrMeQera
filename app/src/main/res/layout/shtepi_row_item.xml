@@ -14,13 +14,13 @@
         android:padding="16dp"
         android:id="@+id/containershtepi"
         >
-
-        <ImageView
-            android:id="@+id/sh_thumbnail"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            />
-
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/sh_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -29,7 +29,6 @@
                 android:id="@+id/sh_cmimi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
                 android:text="Cmimi"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
@@ -59,6 +58,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sh_shtepi" />
+
+            <Button
+                android:id="@+id/sh_favBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_baseline_red_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

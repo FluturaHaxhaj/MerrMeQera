@@ -27,7 +27,7 @@ import java.util.List;
 
 public class FragmentBanesa extends Fragment {
 
-    private final String JSON_URL = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/a314cf91de370c06150301d966551c4759fd0185/apartament.json";
+    private final String JSON_URL = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/bfd674542afe8beadaa7db1ecae8f10148e94561/apartament.json";
     private RecyclerView recyclerView;
     private JsonArrayRequest request ;
     private RequestQueue requestQueue ;
@@ -79,6 +79,7 @@ public class FragmentBanesa extends Fragment {
                     jsonObject = response.getJSONObject(i);
                     Banesa banesa = new Banesa();
 
+                    banesa.setKey_id(jsonObject.getString("key_id"));
                     banesa.setBanesa(jsonObject.getString("banesa"));
                     banesa.setPershkrimi(jsonObject.getString("pershkrimi"));
                     banesa.setLokacioni(jsonObject.getString("lokacioni"));
@@ -87,6 +88,7 @@ public class FragmentBanesa extends Fragment {
                     banesa.setDhoma(jsonObject.getString("dhoma"));
                     banesa.setTelefoni(jsonObject.getString("telefoni"));
                     banesa.setImage_url(jsonObject.getString("image_url"));
+                    banesa.setFavStatus(jsonObject.getString("favStatus"));
                     lstBanesa.add(banesa);
 
                 }
