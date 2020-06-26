@@ -43,7 +43,7 @@
                 android:layout_marginStart="7dp"
                 android:text="Banesa"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

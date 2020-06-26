@@ -53,7 +53,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     public static final int CAMERA_REQUEST_CODE = 102;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    RelativeLayout rrethNesh, lokacioni,listaView;
+    RelativeLayout rrethNesh, lokacioni,listaView,rregulla;
     ImageView menuIcon, profilePic;
     TextView menuProfileName;
     String currentPhotoPath;
@@ -70,6 +70,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         rrethNesh = findViewById(R.id.rreth_nesh);
+        rregulla = findViewById(R.id.rregulla);
         menuIcon = findViewById(R.id.menu_icon);
         View header = navigationView.getHeaderView(0);
         profilePic = header.findViewById(R.id.profile_pic);
@@ -102,6 +103,13 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             }
         });
 
+        rregulla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rregullaIntent = new Intent(getApplicationContext(),Rregulla.class);
+                startActivity(rregullaIntent);
+            }
+        });
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
