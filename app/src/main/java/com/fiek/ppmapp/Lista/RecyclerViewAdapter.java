@@ -107,8 +107,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         LinearLayout view_container;
         Button favBtn;
 
-
-
         public MyViewHolder(View itemView) {
             super(itemView);
 

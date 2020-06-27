@@ -25,7 +25,7 @@ import java.util.List;
 public class FragmentShtepi extends Fragment {
 
 
-    private final String JSON_URL = "https://gist.githubusercontent.com/FluturaHaxhaj/3c3effa3419fc8b5568085226fb0600a/raw/88d15f0bb84d6cd5a33e7f5027ab309747e76b3e/shtepia.json";
+    private final String JSON_URL = "https://gist.githubusercontent.com/FluturaHaxhaj/3c3effa3419fc8b5568085226fb0600a/raw/f5a85d45277fbaa69b51209d46b3678742dccd1d/shtepia.json";
     private RecyclerView recyclerView;
     private JsonArrayRequest request ;
     private RequestQueue requestQueue ;
@@ -77,6 +77,7 @@ public class FragmentShtepi extends Fragment {
                     jsonObject = response.getJSONObject(i);
                     Shtepi shtepi = new Shtepi();
 
+                    shtepi.setKey_id(jsonObject.getString("key_id"));
                     shtepi.setShtepi(jsonObject.getString("shtepi"));
                     shtepi.setPershkrimi(jsonObject.getString("pershkrimi"));
                     shtepi.setLokacioni(jsonObject.getString("lokacioni"));
@@ -85,6 +86,7 @@ public class FragmentShtepi extends Fragment {
                     shtepi.setKate(jsonObject.getString("kate"));
                     shtepi.setTelefoni(jsonObject.getString("telefoni"));
                     shtepi.setImage_url(jsonObject.getString("image_url"));
+                    shtepi.setFavStatus(jsonObject.getString("favStatus"));
                     lstShtepi.add(shtepi);
 
                 }

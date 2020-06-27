@@ -5,17 +5,25 @@ public class FavItem {
     private String titulli;
     private String lokacioni;
     private String cmimi;
+    private String pershkrimi;
+    private String siperfaqja;
+    private String dhoma;
+    private String telefoni;
     private String img;
 
     public FavItem() {
     }
 
-    public FavItem(String key_id, String titulli, String lokacioni, String cmimi, String img) {
+    public FavItem(String key_id, String titulli,String pershkrimi, String lokacioni, String cmimi,String siperfaqja,String dhoma, String telefoni,String img) {
         this.key_id = key_id;
         this.titulli = titulli;
         this.lokacioni = lokacioni;
         this.cmimi = cmimi;
         this.img = img;
+        this.pershkrimi = pershkrimi;
+        this.siperfaqja = siperfaqja;
+        this.dhoma = dhoma;
+        this.telefoni = telefoni;
     }
 
     public String getKey_id() {
@@ -48,6 +56,38 @@ public class FavItem {
 
     public void setCmimi(String cmimi) {
         this.cmimi = cmimi;
+    }
+
+    public String getPershkrimi() {
+        return pershkrimi;
+    }
+
+    public void setPershkrimi(String pershkrimi) {
+        this.pershkrimi = pershkrimi;
+    }
+
+    public String getSiperfaqja() {
+        return siperfaqja;
+    }
+
+    public void setSiperfaqja(String siperfaqja) {
+        this.siperfaqja = siperfaqja;
+    }
+
+    public String getDhoma() {
+        return dhoma;
+    }
+
+    public void setDhoma(String dhoma) {
+        this.dhoma = dhoma;
+    }
+
+    public String getTelefoni() {
+        return telefoni;
+    }
+
+    public void setTelefoni(String telefoni) {
+        this.telefoni = telefoni;
     }
 
     public String getImg() {

@@ -1,6 +1,7 @@
 package com.fiek.ppmapp.Favorites;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,25 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fav_item,
                 parent,false);
         favDB = new FavDB(context);
-        return new ViewHolder(view);
+        final ViewHolder viewHolder = new ViewHolder(view);
+        viewHolder.view_container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(context, FavDetailsActivity.class);
+                i.putExtra("fav_shtepi", favItemList.get(viewHolder.getAdapterPosition()).getTitulli());
+                i.putExtra("fav_pershkrimi", favItemList.get(viewHolder.getAdapterPosition()).getPershkrimi());
+                i.putExtra("fav_lokacioni", favItemList.get(viewHolder.getAdapterPosition()).getLokacioni());
+                i.putExtra("fav_cmimi", favItemList.get(viewHolder.getAdapterPosition()).getCmimi());
+                i.putExtra("fav_siperfaqja", favItemList.get(viewHolder.getAdapterPosition()).getSiperfaqja());
+                i.putExtra("fav_dhoma", favItemList.get(viewHolder.getAdapterPosition()).getDhoma());
+                i.putExtra("fav_tel",favItemList.get(viewHolder.getAdapterPosition()).getTelefoni());
+                i.putExtra("fav_img", favItemList.get(viewHolder.getAdapterPosition()).getImg());
+
+                context.startActivity(i);
+            }
+        });
+        return viewHolder;
     }
 
     @Override

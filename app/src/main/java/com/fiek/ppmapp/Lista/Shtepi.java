@@ -2,6 +2,7 @@ package com.fiek.ppmapp.Lista;
 
 public class Shtepi {
 
+    private String key_id;
     private String shtepi;
     private String pershkrimi;
     private String lokacioni;
@@ -10,12 +11,15 @@ public class Shtepi {
     private String kate;
     private String telefoni;
     private String image_url;
+    private String favStatus;
+
 
     public Shtepi() {
     }
 
-    public Shtepi(String shtepi, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kate, String telefoni, String image_url) {
+    public Shtepi(String key_id,String shtepi, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kate, String telefoni, String image_url,String favStatus) {
         this.shtepi = shtepi;
+        this.key_id = key_id;
         this.pershkrimi = pershkrimi;
         this.lokacioni = lokacioni;
         this.cmimi = cmimi;
@@ -23,6 +27,23 @@ public class Shtepi {
         this.kate = kate;
         this.telefoni = telefoni;
         this.image_url = image_url;
+        this.favStatus = favStatus;
+    }
+
+    public String getKey_id() {
+        return key_id;
+    }
+
+    public void setKey_id(String key_id) {
+        this.key_id = key_id;
+    }
+
+    public String getFavStatus() {
+        return favStatus;
+    }
+
+    public void setFavStatus(String favStatus) {
+        this.favStatus = favStatus;
     }
 
     public String getShtepi() {
