@@ -1,30 +1,28 @@
 package com.fiek.ppmapp.Lista;
 
-public class Shtepi {
-
+public class BanesaShtepi {
     private String key_id;
-    private String shtepi;
+    private String banesaShtepi;
     private String pershkrimi;
     private String lokacioni;
     private String cmimi;
     private String siperfaqja;
-    private String kate;
+    private String kateDhoma;
     private String telefoni;
     private String image_url;
     private String favStatus;
 
-
-    public Shtepi() {
+    public BanesaShtepi() {
     }
 
-    public Shtepi(String key_id,String shtepi, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kate, String telefoni, String image_url,String favStatus) {
-        this.shtepi = shtepi;
+    public BanesaShtepi(String key_id, String banesaShtepi, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kateDhoma, String telefoni, String image_url, String favStatus) {
         this.key_id = key_id;
+        this.banesaShtepi = banesaShtepi;
         this.pershkrimi = pershkrimi;
         this.lokacioni = lokacioni;
         this.cmimi = cmimi;
         this.siperfaqja = siperfaqja;
-        this.kate = kate;
+        this.kateDhoma = kateDhoma;
         this.telefoni = telefoni;
         this.image_url = image_url;
         this.favStatus = favStatus;
@@ -38,20 +36,12 @@ public class Shtepi {
         this.key_id = key_id;
     }
 
-    public String getFavStatus() {
-        return favStatus;
+    public String getBanesaShtepi() {
+        return banesaShtepi;
     }
 
-    public void setFavStatus(String favStatus) {
-        this.favStatus = favStatus;
-    }
-
-    public String getShtepi() {
-        return shtepi;
-    }
-
-    public void setShtepi(String shtepi) {
-        this.shtepi = shtepi;
+    public void setBanesaShtepi(String banesaShtepi) {
+        this.banesaShtepi = banesaShtepi;
     }
 
     public String getPershkrimi() {
@@ -86,12 +76,12 @@ public class Shtepi {
         this.siperfaqja = siperfaqja;
     }
 
-    public String getKate() {
-        return kate;
+    public String getKateDhoma() {
+        return kateDhoma;
     }
 
-    public void setKate(String kate) {
-        this.kate = kate;
+    public void setKateDhoma(String kateDhoma) {
+        this.kateDhoma = kateDhoma;
     }
 
     public String getTelefoni() {
@@ -108,5 +98,13 @@ public class Shtepi {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public String getFavStatus() {
+        return favStatus;
+    }
+
+    public void setFavStatus(String favStatus) {
+        this.favStatus = favStatus;
     }
 }

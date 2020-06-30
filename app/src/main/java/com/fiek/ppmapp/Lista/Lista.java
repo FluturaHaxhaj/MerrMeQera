@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.ProgressBar;
 
 import com.fiek.ppmapp.R;
 import com.google.android.material.tabs.TabLayout;

@@ -31,14 +31,14 @@ public class BanesaActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_banesa);
 
-        String banesa = getIntent().getExtras().getString("b_banesa");
-        String pershkrimi = getIntent().getExtras().getString("b_pershkrimi");
-        String lokacioni = getIntent().getExtras().getString("b_lokacioni");
-        String cmimi = getIntent().getExtras().getString("b_cmimi");
-        String siperfaqja = getIntent().getExtras().getString("b_siperfaqja");
-        String dhoma = getIntent().getExtras().getString("b_dhoma");
-        telefoni = getIntent().getExtras().getString("b_tel");
-        String image_url = getIntent().getExtras().getString("b_img");
+        String banesa = getIntent().getExtras().getString("banesa");
+        String pershkrimi = getIntent().getExtras().getString("pershkrimi");
+        String lokacioni = getIntent().getExtras().getString("lokacioni");
+        String cmimi = getIntent().getExtras().getString("cmimi");
+        String siperfaqja = getIntent().getExtras().getString("siperfaqja");
+        String dhoma = getIntent().getExtras().getString("dhoma");
+        telefoni = getIntent().getExtras().getString("tel");
+        String image_url = getIntent().getExtras().getString("img");
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar_id);
         collapsingToolbarLayout.setTitleEnabled(true);

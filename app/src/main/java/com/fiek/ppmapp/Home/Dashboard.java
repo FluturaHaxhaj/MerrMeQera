@@ -33,13 +33,10 @@ import com.fiek.ppmapp.Map.MapActivity;
 import com.fiek.ppmapp.MenuItems.Feedback;
 import com.fiek.ppmapp.R;
 import com.fiek.ppmapp.LoginSignup.SessionManager;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -82,45 +79,28 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         storageReference = FirebaseStorage.getInstance().getReference();
 
 
-        rrethNesh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent rrethNeshIntent = new Intent(getApplicationContext(), Rrethnesh.class);
-                startActivity(rrethNeshIntent);
-            }
+        rrethNesh.setOnClickListener(v -> {
+            Intent rrethNeshIntent = new Intent(getApplicationContext(), Rrethnesh.class);
+            startActivity(rrethNeshIntent);
         });
-        lokacioni.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent lokacioniIntent = new Intent(getApplicationContext(), MapActivity.class);
-                startActivity(lokacioniIntent);
-            }
+        lokacioni.setOnClickListener(v -> {
+            Intent lokacioniIntent = new Intent(getApplicationContext(), MapActivity.class);
+            startActivity(lokacioniIntent);
         });
-        listaView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent listaIntent = new Intent(getApplicationContext(), Lista.class);
-                startActivity(listaIntent);
-            }
+        listaView.setOnClickListener(v -> {
+            Intent listaIntent = new Intent(getApplicationContext(), Lista.class);
+            startActivity(listaIntent);
         });
 
-        rregulla.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent rregullaIntent = new Intent(getApplicationContext(),Rregulla.class);
-                startActivity(rregullaIntent);
-            }
+        rregulla.setOnClickListener(v -> {
+            Intent rregullaIntent = new Intent(getApplicationContext(),Rregulla.class);
+            startActivity(rregullaIntent);
         });
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
 
-        profilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                askCameraPermission();
-            }
-        });
+        profilePic.setOnClickListener(v -> askCameraPermission());
 
         String fullName = showUserName();
         menuProfileName.setText(fullName);
@@ -136,12 +116,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         @Override
         protected Void doInBackground(String... strings) {
             StorageReference profileRef = storageReference.child("users/" + strings[0] + "/profile.jpg");
-            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    Picasso.get().load(uri).into(profilePic);
-                }
-            });
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profilePic));
             return null;
         }
     }
@@ -187,28 +162,8 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     private void uploadImageToFirebase(Uri imageUri) {
         String fullName = showUserName();
         StorageReference fileRef = storageReference.child("users/" + fullName + "/profile.jpg");
-        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Picasso.get().load(uri).into(profilePic);
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Snackbar.make(drawerLayout,"Ngarkimi i fotos deshtoi.",Snackbar.LENGTH_LONG)
-                        .setAction("Provo Perseri", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                askCameraPermission();
-                            }
-                        });
-            }
-        });
+        fileRef.putFile(imageUri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profilePic))).addOnFailureListener(e -> Snackbar.make(drawerLayout,"Ngarkimi i fotos deshtoi.",Snackbar.LENGTH_LONG)
+                .setAction("Provo Perseri", v -> askCameraPermission()));
 
     }
 
@@ -255,8 +210,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     private String showUserName() {
         SessionManager sessionManager = new SessionManager(Dashboard.this, SessionManager.SESSION_USERSESSION);
         HashMap<String, String> usersDetails = sessionManager.getUsersDetailFromSession();
-        String fullName = usersDetails.get(SessionManager.KEY_NAME);
-        return fullName;
+        return usersDetails.get(SessionManager.KEY_NAME);
     }
 
     @Override
@@ -277,13 +231,10 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
 
-        menuIcon.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                if(drawerLayout.isDrawerVisible(GravityCompat.START))
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                else drawerLayout.openDrawer(GravityCompat.START);
-            }
+        menuIcon.setOnClickListener(view -> {
+            if(drawerLayout.isDrawerVisible(GravityCompat.START))
+                drawerLayout.closeDrawer(GravityCompat.START);
+            else drawerLayout.openDrawer(GravityCompat.START);
         });
     }
 

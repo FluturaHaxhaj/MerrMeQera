@@ -147,13 +147,27 @@
         android:padding="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <TextView
             android:id="@+id/b_pershkrimi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Pershkrimi" />
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginTop="40dp"
+                app:cardCornerRadius="30dp"
+                android:layout_below="@+id/b_pershkrimi">
+
+                <com.google.android.gms.maps.MapView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
 

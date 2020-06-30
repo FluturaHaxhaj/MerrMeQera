@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.fiek.ppmapp.Lista.BanesaActivity;
 import com.fiek.ppmapp.R;
 
 import java.util.List;
@@ -43,15 +44,15 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(context, FavDetailsActivity.class);
-                i.putExtra("fav_shtepi", favItemList.get(viewHolder.getAdapterPosition()).getTitulli());
-                i.putExtra("fav_pershkrimi", favItemList.get(viewHolder.getAdapterPosition()).getPershkrimi());
-                i.putExtra("fav_lokacioni", favItemList.get(viewHolder.getAdapterPosition()).getLokacioni());
-                i.putExtra("fav_cmimi", favItemList.get(viewHolder.getAdapterPosition()).getCmimi());
-                i.putExtra("fav_siperfaqja", favItemList.get(viewHolder.getAdapterPosition()).getSiperfaqja());
-                i.putExtra("fav_dhoma", favItemList.get(viewHolder.getAdapterPosition()).getDhoma());
-                i.putExtra("fav_tel",favItemList.get(viewHolder.getAdapterPosition()).getTelefoni());
-                i.putExtra("fav_img", favItemList.get(viewHolder.getAdapterPosition()).getImg());
+                Intent i = new Intent(context, BanesaActivity.class);
+                i.putExtra("banesa", favItemList.get(viewHolder.getAdapterPosition()).getTitulli());
+                i.putExtra("pershkrimi", favItemList.get(viewHolder.getAdapterPosition()).getPershkrimi());
+                i.putExtra("lokacioni", favItemList.get(viewHolder.getAdapterPosition()).getLokacioni());
+                i.putExtra("cmimi", favItemList.get(viewHolder.getAdapterPosition()).getCmimi());
+                i.putExtra("siperfaqja", favItemList.get(viewHolder.getAdapterPosition()).getSiperfaqja());
+                i.putExtra("dhoma", favItemList.get(viewHolder.getAdapterPosition()).getDhoma());
+                i.putExtra("tel",favItemList.get(viewHolder.getAdapterPosition()).getTelefoni());
+                i.putExtra("img", favItemList.get(viewHolder.getAdapterPosition()).getImg());
 
                 context.startActivity(i);
             }

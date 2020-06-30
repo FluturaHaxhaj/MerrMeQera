@@ -15,7 +15,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -29,11 +28,9 @@ import java.util.List;
 
 public class FragmentBanesa extends Fragment {
 
-    private final String JSON_URL = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/bfd674542afe8beadaa7db1ecae8f10148e94561/apartament.json";
     private RecyclerView recyclerView;
-    private JsonArrayRequest request ;
     private RequestQueue requestQueue ;
-    private List<Banesa> lstBanesa;
+    private List<BanesaShtepi> lstBanesa;
 
 
 
@@ -71,7 +68,7 @@ public class FragmentBanesa extends Fragment {
 
 
     private void jsonrequest(){
-        String url = "https://20af3aa26edf.ngrok.io";
+        String url = "https://45d01304277f.ngrok.io";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -81,15 +78,15 @@ public class FragmentBanesa extends Fragment {
                             for (int i = 0;i<jsonArray.length();i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                Banesa banesa = new Banesa();
+                                BanesaShtepi banesa = new BanesaShtepi();
 
                                 banesa.setKey_id(jsonObject.getString("key_id"));
-                                banesa.setBanesa(jsonObject.getString("banesa"));
+                                banesa.setBanesaShtepi(jsonObject.getString("banesa"));
                                 banesa.setPershkrimi(jsonObject.getString("pershkrimi"));
                                 banesa.setLokacioni(jsonObject.getString("lokacioni"));
                                 banesa.setCmimi(jsonObject.getString("cmimi"));
                                 banesa.setSiperfaqja(jsonObject.getString("siperfaqja"));
-                                banesa.setDhoma(jsonObject.getString("dhoma"));
+                                banesa.setKateDhoma(jsonObject.getString("dhoma"));
                                 banesa.setTelefoni(jsonObject.getString("telefoni"));
                                 banesa.setImage_url(jsonObject.getString("image_url"));
                                 banesa.setFavStatus(jsonObject.getString("favStatus"));
@@ -111,7 +108,7 @@ public class FragmentBanesa extends Fragment {
         requestQueue.add(request) ;
     }
 
-    private void setuprecyclerview(List<Banesa> lstBanesa) {
+    private void setuprecyclerview(List<BanesaShtepi> lstBanesa) {
         RecyclerViewAdapter myadapter = new RecyclerViewAdapter(getContext(),lstBanesa) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(myadapter);

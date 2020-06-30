@@ -17,7 +17,6 @@ import java.util.List;
 public class Adapter extends PagerAdapter {
 
     private List<Model> models;
-    private LayoutInflater layoutInflater;
     private Context context;
 
     public Adapter(List<Model> models, Context context) {
@@ -38,7 +37,7 @@ public class Adapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
-        layoutInflater = LayoutInflater.from(context);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.rregulla_item, container, false);
 
         ImageView imageView;
@@ -52,14 +51,11 @@ public class Adapter extends PagerAdapter {
         title.setText(models.get(position).getTitle());
         desc.setText(models.get(position).getDesc());
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, Rregulladetails.class);
-                intent.putExtra("param", models.get(position).getDesc());
-                context.startActivity(intent);
-                // finish();
-            }
+        view.setOnClickListener(v -> {
+            Intent intent = new Intent(context, Rregulladetails.class);
+            intent.putExtra("param", models.get(position).getDesc());
+            context.startActivity(intent);
+            // finish();
         });
 
         container.addView(view, 0);

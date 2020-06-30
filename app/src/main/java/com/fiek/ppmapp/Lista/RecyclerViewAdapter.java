@@ -29,11 +29,11 @@ import static com.fiek.ppmapp.R.drawable.ic_baseline_red_24;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Banesa> mData;
+    private List<BanesaShtepi> mData;
     RequestOptions option;
     private FavDB favDB;
 
-    public RecyclerViewAdapter(Context mContext, List<Banesa> mData) {
+    public RecyclerViewAdapter(Context mContext, List<BanesaShtepi> mData) {
         this.mContext = mContext;
         this.mData = mData;
 
@@ -58,14 +58,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v) {
 
                 Intent i = new Intent(mContext, BanesaActivity.class);
-                i.putExtra("b_banesa", mData.get(viewHolder.getAdapterPosition()).getBanesa());
-                i.putExtra("b_pershkrimi", mData.get(viewHolder.getAdapterPosition()).getPershkrimi());
-                i.putExtra("b_lokacioni", mData.get(viewHolder.getAdapterPosition()).getLokacioni());
-                i.putExtra("b_cmimi", mData.get(viewHolder.getAdapterPosition()).getCmimi());
-                i.putExtra("b_siperfaqja", mData.get(viewHolder.getAdapterPosition()).getSiperfaqja());
-                i.putExtra("b_dhoma", mData.get(viewHolder.getAdapterPosition()).getDhoma());
-                i.putExtra("b_tel",mData.get(viewHolder.getAdapterPosition()).getTelefoni());
-                i.putExtra("b_img", mData.get(viewHolder.getAdapterPosition()).getImage_url());
+                i.putExtra("banesa", mData.get(viewHolder.getAdapterPosition()).getBanesaShtepi());
+                i.putExtra("pershkrimi", mData.get(viewHolder.getAdapterPosition()).getPershkrimi());
+                i.putExtra("lokacioni", mData.get(viewHolder.getAdapterPosition()).getLokacioni());
+                i.putExtra("cmimi", mData.get(viewHolder.getAdapterPosition()).getCmimi());
+                i.putExtra("siperfaqja", mData.get(viewHolder.getAdapterPosition()).getSiperfaqja());
+                i.putExtra("dhoma", mData.get(viewHolder.getAdapterPosition()).getKateDhoma());
+                i.putExtra("tel",mData.get(viewHolder.getAdapterPosition()).getTelefoni());
+                i.putExtra("img", mData.get(viewHolder.getAdapterPosition()).getImage_url());
 
                 mContext.startActivity(i);
             }
@@ -78,11 +78,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final Banesa banesa = mData.get(position);
-        readCursorData(banesa,holder);
+        final BanesaShtepi banesaShtepi = mData.get(position);
+        readCursorData(banesaShtepi,holder);
 
         holder.tv_cmimi.setText(mData.get(position).getCmimi());
-        holder.tv_banesa.setText(mData.get(position).getBanesa()+", "+mData.get(position).getDhoma()+"dhoma, "+mData.get(position).getSiperfaqja());
+        holder.tv_banesa.setText(mData.get(position).getBanesaShtepi()+", "+mData.get(position).getKateDhoma()+"dhoma, "+mData.get(position).getSiperfaqja());
         holder.tv_lokacioni.setText(mData.get(position).getLokacioni());
 
         //Load image from the internet and set it into ImageView using Glide
@@ -119,16 +119,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    Banesa banesa = mData.get(position);
+                    BanesaShtepi banesaShtepi = mData.get(position);
 
-                    if (banesa.getFavStatus().equals("0")){
-                        banesa.setFavStatus("1");
-                        favDB.insertIntoTheDatabase(banesa.getKey_id(),banesa.getBanesa(),banesa.getPershkrimi(),banesa.getLokacioni(),banesa.getCmimi(),
-                                banesa.getSiperfaqja(),banesa.getDhoma(),banesa.getTelefoni(),banesa.getImage_url(),banesa.getFavStatus());
+                    if (banesaShtepi.getFavStatus().equals("0")){
+                        banesaShtepi.setFavStatus("1");
+                        favDB.insertIntoTheDatabase(banesaShtepi.getKey_id(),banesaShtepi.getBanesaShtepi(),banesaShtepi.getPershkrimi(),banesaShtepi.getLokacioni(),banesaShtepi.getCmimi(),
+                                banesaShtepi.getSiperfaqja(),banesaShtepi.getKateDhoma(),banesaShtepi.getTelefoni(),banesaShtepi.getImage_url(),banesaShtepi.getFavStatus());
                         favBtn.setBackgroundResource(ic_baseline_red_24);
                     }else{
-                        banesa.setFavStatus("0");
-                        favDB.remove_fav(banesa.getKey_id());
+                        banesaShtepi.setFavStatus("0");
+                        favDB.remove_fav(banesaShtepi.getKey_id());
                         favBtn.setBackgroundResource(ic_baseline_fshadow_24);
 
                     }
@@ -145,13 +145,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         editor.apply();
     }
 
-    private void readCursorData(Banesa banesa, RecyclerView.ViewHolder viewHolder) {
-        Cursor cursor = favDB.read_all_data(banesa.getKey_id());
+    private void readCursorData(BanesaShtepi banesaShtepi, RecyclerView.ViewHolder viewHolder) {
+        Cursor cursor = favDB.read_all_data(banesaShtepi.getKey_id());
         SQLiteDatabase db = favDB.getReadableDatabase();
         try {
             while(cursor.moveToNext()){
                 String item_fav_status = cursor.getString(cursor.getColumnIndex(FavDB.FAVORITE_STATUS));
-                banesa.setFavStatus(item_fav_status);
+                banesaShtepi.setFavStatus(item_fav_status);
 
                 if (item_fav_status != null && item_fav_status.equals("1")){
                     viewHolder.itemView.findViewById(R.id.b_favBtn).setBackgroundResource(ic_baseline_red_24);
