@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fiek.ppmapp.Favorites.FavDetailsActivity">
+    tools:context=".MenuItems.Favorites.FavDetailsActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -147,12 +147,28 @@
             android:padding="16dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
             <TextView
                 android:id="@+id/sh_pershkrimi_fav"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Pershkrimi" />
+                <androidx.cardview.widget.CardView
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/sh_pershkrimi_fav"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:cardCornerRadius="30dp">
+                    <com.google.android.gms.maps.MapView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
 
 
         </androidx.core.widget.NestedScrollView>

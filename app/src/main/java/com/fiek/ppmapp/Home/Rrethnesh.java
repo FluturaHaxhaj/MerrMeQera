@@ -3,20 +3,16 @@ package com.fiek.ppmapp.Home;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.palette.graphics.Palette;
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,6 +27,7 @@ import android.widget.Toast;
 
 import com.fiek.ppmapp.LoginSignup.Login;
 import com.fiek.ppmapp.LoginSignup.SessionManager;
+import com.fiek.ppmapp.MenuItems.Favorites.FavoritesActivity;
 import com.fiek.ppmapp.MenuItems.Feedback;
 import com.fiek.ppmapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -49,7 +46,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Rrethnesh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -277,9 +273,15 @@ public class Rrethnesh extends AppCompatActivity implements NavigationView.OnNav
         switch (menuItem.getItemId()) {
             case R.id.nav_feedback:
                 startActivity(new Intent(getApplicationContext(), Feedback.class));
+                menuItem.setCheckable(false);
+
                 break;
             case R.id.nav_home:
                 startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                break;
+            case R.id.nav_favorites:
+                startActivity(new Intent(getApplicationContext(), FavoritesActivity.class));
+                menuItem.setCheckable(false);
                 break;
 
             case R.id.nav_logout:

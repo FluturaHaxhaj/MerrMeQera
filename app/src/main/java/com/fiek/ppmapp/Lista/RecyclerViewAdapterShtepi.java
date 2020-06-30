@@ -1,6 +1,6 @@
 package com.fiek.ppmapp.Lista;
 
-import com.fiek.ppmapp.Favorites.FavDB;
+import com.fiek.ppmapp.MenuItems.Favorites.FavDB;
 import com.fiek.ppmapp.R;
 import android.content.Context;
 import android.content.Intent;

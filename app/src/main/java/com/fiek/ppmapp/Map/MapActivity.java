@@ -1,4 +1,10 @@
 package com.fiek.ppmapp.Map;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.fiek.ppmapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,10 +16,12 @@ import com.google.maps.android.clustering.ClusterManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.WindowManager;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -26,6 +34,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private GoogleMap googleMap;
     private JSONArray jsonArray;
+    private RequestQueue requestQueue ;
     private List<MarkerOptions> listMarkers = new ArrayList<>();
     private ClusterManager<MarkerClusterItem> clusterManager;
 
@@ -35,41 +44,61 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_map);
 
-        jsonArray = readAssets();
-
         SupportMapFragment supportMapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.googleMap);
         supportMapFragment.getMapAsync(this);
     }
 
-    private JSONArray readAssets(){
-        try{
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getAssets().open("places.json")));
-            String line = "";
-            StringBuilder stringBuilder = new StringBuilder("");
-            while ((line = bufferedReader.readLine()) != null){
-                stringBuilder.append(line);
-            }
-            return new JSONArray(stringBuilder.toString());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return new JSONArray();
-    }
+    private class MapTask extends AsyncTask<Void,Void,Void> {
 
-    private void addMarkers(){
-        try{
-            for (int i = 0; i < jsonArray.length(); i++){
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                double lat = jsonObject.getDouble("lat");
-                double lng = jsonObject.getDouble("lng");
-                String name = jsonObject.getString("name");
-                LatLng latLng = new LatLng(lat, lng);
-                MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(name);
-                listMarkers.add(markerOptions);
-            }
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(listMarkers.get(0).getPosition(), 13.0f));
-        }catch (Exception e){
-            e.printStackTrace();
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String url = "https://20af3aa26edf.ngrok.io";
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonArray = response.getJSONArray("Banesat");
+                                for (int i = 0;i<jsonArray.length();i++){
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                    double lat = jsonObject.getDouble("lat");
+                                    double lng = jsonObject.getDouble("lng");
+                                    String name = jsonObject.getString("lokacioni");
+                                    LatLng latLng = new LatLng(lat, lng);
+                                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(name);
+                                    listMarkers.add(markerOptions);
+                                    googleMap.addMarker(markerOptions);
+                                }
+                                JSONArray jsonArray2 = response.getJSONArray("Shtepite");
+                                for (int i = 0;i<jsonArray.length();i++){
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                    double lat = jsonObject.getDouble("lat");
+                                    double lng = jsonObject.getDouble("lng");
+                                    String name = jsonObject.getString("lokacioni");
+                                    LatLng latLng = new LatLng(lat, lng);
+                                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(name);
+                                    listMarkers.add(markerOptions);
+                                    googleMap.addMarker(markerOptions);
+                                }
+
+                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(listMarkers.get(0).getPosition(), 13.0f));
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+            requestQueue.add(request) ;
+
+            return null;
         }
     }
 
@@ -118,7 +147,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
         clusterManager = new ClusterManager<>(this, googleMap);
-        addMarkers();
+        MapTask mapTask = new MapTask();
+        mapTask.execute();
+
         setupClusterManager();
     }
 }

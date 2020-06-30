@@ -11,10 +11,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.fiek.ppmapp.R;
@@ -64,47 +69,46 @@ public class FragmentBanesa extends Fragment {
         }
     }
 
-    private void jsonrequest() {
 
-        request = new JsonArrayRequest(JSON_URL, response -> {
+    private void jsonrequest(){
+        String url = "https://20af3aa26edf.ngrok.io";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("Banesat");
+                            for (int i = 0;i<jsonArray.length();i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            JSONObject jsonObject = null;
+                                Banesa banesa = new Banesa();
 
-            for(int i=0; i < response.length(); i++){
+                                banesa.setKey_id(jsonObject.getString("key_id"));
+                                banesa.setBanesa(jsonObject.getString("banesa"));
+                                banesa.setPershkrimi(jsonObject.getString("pershkrimi"));
+                                banesa.setLokacioni(jsonObject.getString("lokacioni"));
+                                banesa.setCmimi(jsonObject.getString("cmimi"));
+                                banesa.setSiperfaqja(jsonObject.getString("siperfaqja"));
+                                banesa.setDhoma(jsonObject.getString("dhoma"));
+                                banesa.setTelefoni(jsonObject.getString("telefoni"));
+                                banesa.setImage_url(jsonObject.getString("image_url"));
+                                banesa.setFavStatus(jsonObject.getString("favStatus"));
+                                lstBanesa.add(banesa);
 
-                try{
-                    jsonObject = response.getJSONObject(i);
-                    Banesa banesa = new Banesa();
-
-                    banesa.setKey_id(jsonObject.getString("key_id"));
-                    banesa.setBanesa(jsonObject.getString("banesa"));
-                    banesa.setPershkrimi(jsonObject.getString("pershkrimi"));
-                    banesa.setLokacioni(jsonObject.getString("lokacioni"));
-                    banesa.setCmimi(jsonObject.getString("cmimi"));
-                    banesa.setSiperfaqja(jsonObject.getString("siperfaqja"));
-                    banesa.setDhoma(jsonObject.getString("dhoma"));
-                    banesa.setTelefoni(jsonObject.getString("telefoni"));
-                    banesa.setImage_url(jsonObject.getString("image_url"));
-                    banesa.setFavStatus(jsonObject.getString("favStatus"));
-                    lstBanesa.add(banesa);
-
-                }
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        setuprecyclerview(lstBanesa);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
             }
-
-            setuprecyclerview(lstBanesa);
-
-        }, error -> {
-
         });
         requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(request) ;
-
-
     }
 
     private void setuprecyclerview(List<Banesa> lstBanesa) {

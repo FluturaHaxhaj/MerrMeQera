@@ -1,4 +1,4 @@
-package com.fiek.ppmapp.Favorites;
+package com.fiek.ppmapp.MenuItems.Favorites;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -6,8 +6,6 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.fiek.ppmapp.Lista.FragmentBanesa;
-import com.fiek.ppmapp.Lista.FragmentShtepi;
 import com.fiek.ppmapp.Lista.ViewPagerAdapter;
 import com.fiek.ppmapp.R;
 import com.google.android.material.tabs.TabLayout;

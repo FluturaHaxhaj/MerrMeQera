@@ -1,4 +1,4 @@
-package com.fiek.ppmapp.Favorites;
+package com.fiek.ppmapp.MenuItems.Favorites;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,10 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-import androidx.core.content.ContextCompat;
-
-import java.sql.SQLClientInfoException;
 
 public class FavDB extends SQLiteOpenHelper {
     private static int DB_VERSION = 1;

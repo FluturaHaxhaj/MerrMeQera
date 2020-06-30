@@ -1,9 +1,8 @@
 package com.fiek.ppmapp.Lista;
 
-import com.fiek.ppmapp.Favorites.FavDB;
+import com.fiek.ppmapp.MenuItems.Favorites.FavDB;
 import com.fiek.ppmapp.R;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,7 +25,6 @@ import java.util.List;
 
 import static com.fiek.ppmapp.R.drawable.ic_baseline_fshadow_24;
 import static com.fiek.ppmapp.R.drawable.ic_baseline_red_24;
-import static com.fiek.ppmapp.R.drawable.white_circle;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 

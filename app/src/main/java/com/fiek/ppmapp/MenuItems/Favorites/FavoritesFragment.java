@@ -1,4 +1,4 @@
-package com.fiek.ppmapp.Favorites;
+package com.fiek.ppmapp.MenuItems.Favorites;
 
 import androidx.lifecycle.ViewModelProviders;
 

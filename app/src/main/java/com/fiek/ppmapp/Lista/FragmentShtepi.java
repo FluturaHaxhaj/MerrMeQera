@@ -11,11 +11,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.fiek.ppmapp.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -65,48 +70,90 @@ public class FragmentShtepi extends Fragment {
         }
     }
 
-    private void jsonrequest() {
+    private void jsonrequest(){
+        String url = "https://20af3aa26edf.ngrok.io";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("Shtepite");
+                            for (int i = 0;i<jsonArray.length();i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-        request = new JsonArrayRequest(JSON_URL, response -> {
+                                Shtepi shtepi = new Shtepi();
 
-            JSONObject jsonObject = null;
+                                shtepi.setKey_id(jsonObject.getString("key_id"));
+                                shtepi.setShtepi(jsonObject.getString("shtepi"));
+                                shtepi.setPershkrimi(jsonObject.getString("pershkrimi"));
+                                shtepi.setLokacioni(jsonObject.getString("lokacioni"));
+                                shtepi.setCmimi(jsonObject.getString("cmimi"));
+                                shtepi.setSiperfaqja(jsonObject.getString("siperfaqja"));
+                                shtepi.setKate(jsonObject.getString("kate"));
+                                shtepi.setTelefoni(jsonObject.getString("telefoni"));
+                                shtepi.setImage_url(jsonObject.getString("image_url"));
+                                shtepi.setFavStatus(jsonObject.getString("favStatus"));
+                                lstShtepi.add(shtepi);
 
-            for(int i=0; i < response.length(); i++){
-
-                try{
-                    jsonObject = response.getJSONObject(i);
-                    Shtepi shtepi = new Shtepi();
-
-                    shtepi.setKey_id(jsonObject.getString("key_id"));
-                    shtepi.setShtepi(jsonObject.getString("shtepi"));
-                    shtepi.setPershkrimi(jsonObject.getString("pershkrimi"));
-                    shtepi.setLokacioni(jsonObject.getString("lokacioni"));
-                    shtepi.setCmimi(jsonObject.getString("cmimi"));
-                    shtepi.setSiperfaqja(jsonObject.getString("siperfaqja"));
-                    shtepi.setKate(jsonObject.getString("kate"));
-                    shtepi.setTelefoni(jsonObject.getString("telefoni"));
-                    shtepi.setImage_url(jsonObject.getString("image_url"));
-                    shtepi.setFavStatus(jsonObject.getString("favStatus"));
-                    lstShtepi.add(shtepi);
-
-                }
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        setuprecyclerview(lstShtepi);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
             }
-
-            setuprecyclerview(lstShtepi);
-
-        }, error -> {
-
         });
         requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(request) ;
-
-
     }
+
+
+//    private void jsonrequest() {
+//
+//        request = new JsonArrayRequest(JSON_URL, response -> {
+//
+//            JSONObject jsonObject = null;
+//
+//            for(int i=0; i < response.length(); i++){
+//
+//                try{
+//                    jsonObject = response.getJSONObject(i);
+//                    Shtepi shtepi = new Shtepi();
+//
+//                    shtepi.setKey_id(jsonObject.getString("key_id"));
+//                    shtepi.setShtepi(jsonObject.getString("shtepi"));
+//                    shtepi.setPershkrimi(jsonObject.getString("pershkrimi"));
+//                    shtepi.setLokacioni(jsonObject.getString("lokacioni"));
+//                    shtepi.setCmimi(jsonObject.getString("cmimi"));
+//                    shtepi.setSiperfaqja(jsonObject.getString("siperfaqja"));
+//                    shtepi.setKate(jsonObject.getString("kate"));
+//                    shtepi.setTelefoni(jsonObject.getString("telefoni"));
+//                    shtepi.setImage_url(jsonObject.getString("image_url"));
+//                    shtepi.setFavStatus(jsonObject.getString("favStatus"));
+//                    lstShtepi.add(shtepi);
+//
+//                }
+//                catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//            }
+//
+//            setuprecyclerview(lstShtepi);
+//
+//        }, error -> {
+//
+//        });
+//        requestQueue = Volley.newRequestQueue(getContext());
+//        requestQueue.add(request) ;
+//
+//
+//    }
 
     private void setuprecyclerview(List<Shtepi> lstShtepi) {
         RecyclerViewAdapterShtepi myadapter = new RecyclerViewAdapterShtepi(getContext(),lstShtepi) ;

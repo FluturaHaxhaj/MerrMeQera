@@ -1,4 +1,4 @@
-package com.fiek.ppmapp.Favorites;
+package com.fiek.ppmapp.MenuItems.Favorites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.fiek.ppmapp.Lista.ShtepiActivity;
 import com.fiek.ppmapp.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
@@ -37,7 +36,7 @@ public class FavDetailsActivity extends AppCompatActivity {
         String lokacioni = getIntent().getExtras().getString("fav_lokacioni");
         String cmimi = getIntent().getExtras().getString("fav_cmimi");
         String siperfaqja = getIntent().getExtras().getString("fav_siperfaqja");
-        String kate = getIntent().getExtras().getString("fav_kate");
+        String kate = getIntent().getExtras().getString("fav_dhoma");
         telefoni = getIntent().getExtras().getString("fav_tel");
         String image_url = getIntent().getExtras().getString("fav_img");
 
