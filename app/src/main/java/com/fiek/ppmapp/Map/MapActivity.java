@@ -52,7 +52,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         @Override
         protected Void doInBackground(Void... voids) {
-            String url = "https://20af3aa26edf.ngrok.io";
+            String url = "https://b002c54b86d0.ngrok.io";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -71,8 +71,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                     googleMap.addMarker(markerOptions);
                                 }
                                 JSONArray jsonArray2 = response.getJSONArray("Shtepite");
-                                for (int i = 0;i<jsonArray.length();i++){
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                for (int i = 0;i<jsonArray2.length();i++){
+                                    JSONObject jsonObject = jsonArray2.getJSONObject(i);
 
                                     double lat = jsonObject.getDouble("lat");
                                     double lng = jsonObject.getDouble("lng");
@@ -149,7 +149,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         clusterManager = new ClusterManager<>(this, googleMap);
         MapTask mapTask = new MapTask();
         mapTask.execute();
-
         setupClusterManager();
     }
 }
