@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.fiek.ppmapp.Map.MapActivity;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -76,6 +77,7 @@ public class BanesaActivity extends AppCompatActivity implements OnMapReadyCallb
         TextView tv_dhoma = findViewById(R.id.b_dhoma);
         TextView tv_siperfaqja = findViewById(R.id.b_siperfaqja);
         Button telBtn = findViewById(R.id.tel_btn);
+        Button hapHarten = findViewById(R.id.hap_harten);
 
         ViewPager viewPager = findViewById(R.id.view_pager_slide);
 
@@ -91,13 +93,13 @@ public class BanesaActivity extends AppCompatActivity implements OnMapReadyCallb
         telBtn.setText(btnText+telefoni);
         collapsingToolbarLayout.setTitle(banesa);
 
-        telBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makePhoneCall();
-            }
-        });
+        telBtn.setOnClickListener(v -> makePhoneCall());
         RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
+
+        hapHarten.setOnClickListener(v -> {
+            Intent hartaIntent = new Intent(getApplicationContext(), MapActivity.class);
+            startActivity(hartaIntent);
+        });
 
     }
     private void makePhoneCall(){

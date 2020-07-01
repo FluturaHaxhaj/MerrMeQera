@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">MerrMeQera</string>
-    <string name="home">HOME</string>
+    <string name="home">FAQJA KRYESORE</string>
     <string name="profile">PROFILE</string>
-    <string name="logout">LOGOUT</string>
+    <string name="logout">DIL</string>
     <string name="feedback">FEEDBACK</string>
-    <string name="favorites">FAVORITES</string>
+    <string name="favorites">TË PREFERUARAT</string>
     <string name="about">Rreth Nesh</string>
     <string name="description">MerrMeQira është një aplikacion i dedikuar për qira të patundshmërive ekskluzivisht në Prishtinë.\n\Përmes këtij aplikacioni synojmë të lehtësojmë kërkimin dhe komunikimin  në mes të qirradhënësit dhe qirramarrësit potencial.\n\Qirradhënësit do të kenë një platformë në të cilin mund të paraqesin pronat e tyre dhe specifikat e tjera, ndërsa qirramarrësit do të kenë mundësine të kërkojne dhe të vendosin për cilëndo pronë që u përshtatet.  </string>
     <string name="remember">Më mbaj mend</string>
