@@ -68,7 +68,7 @@ public class FragmentBanesa extends Fragment {
 
 
     private void jsonrequest(){
-        String url = "https://45d01304277f.ngrok.io";
+        String url = "https://c9dd8ea67bfc.ngrok.io";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -92,6 +92,9 @@ public class FragmentBanesa extends Fragment {
                                 banesa.setFavStatus(jsonObject.getString("favStatus"));
                                 banesa.setLat(jsonObject.getString("lat"));
                                 banesa.setLng(jsonObject.getString("lng"));
+                                banesa.setImg2(jsonObject.getString("image_url2"));
+                                banesa.setImg3(jsonObject.getString("image_url3"));
+                                banesa.setImg4(jsonObject.getString("image_url4"));
                                 lstBanesa.add(banesa);
 
                             }

@@ -68,7 +68,7 @@ public class FragmentShtepi extends Fragment {
     }
 
     private void jsonrequest(){
-        String url = "https://45d01304277f.ngrok.io";
+        String url = "https://c9dd8ea67bfc.ngrok.io";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -92,6 +92,9 @@ public class FragmentShtepi extends Fragment {
                                 shtepi.setFavStatus(jsonObject.getString("favStatus"));
                                 shtepi.setLat(jsonObject.getString("lat"));
                                 shtepi.setLng(jsonObject.getString("lng"));
+                                shtepi.setImg2(jsonObject.getString("image_url2"));
+                                shtepi.setImg3(jsonObject.getString("image_url3"));
+                                shtepi.setImg4(jsonObject.getString("image_url4"));
                                 lstShtepi.add(shtepi);
 
                             }

@@ -50,7 +50,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         @Override
         protected Void doInBackground(Void... voids) {
-            String url = "https://45d01304277f.ngrok.io";
+            String url = "https://c9dd8ea67bfc.ngrok.io";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @Override

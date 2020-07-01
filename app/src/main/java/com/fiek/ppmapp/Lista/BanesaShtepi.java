@@ -13,11 +13,15 @@ public class BanesaShtepi {
     private String favStatus;
     private String lat;
     private String lng;
+    private String img2;
+    private String img3;
+    private String img4;
 
     public BanesaShtepi() {
     }
 
-    public BanesaShtepi(String key_id, String banesaShtepi, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kateDhoma, String telefoni, String image_url, String favStatus,String lat,String lng) {
+    public BanesaShtepi(String key_id, String banesaShtepi, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kateDhoma, String telefoni, String image_url, String favStatus,String lat,String lng,
+                        String img2,String img3,String img4) {
         this.key_id = key_id;
         this.banesaShtepi = banesaShtepi;
         this.pershkrimi = pershkrimi;
@@ -30,6 +34,9 @@ public class BanesaShtepi {
         this.telefoni = telefoni;
         this.image_url = image_url;
         this.favStatus = favStatus;
+        this.img2 = img2;
+        this.img3 = img3;
+        this.img4 = img4;
     }
 
     public String getKey_id() {
@@ -126,5 +133,29 @@ public class BanesaShtepi {
 
     public void setLng(String lng) {
         this.lng = lng;
+    }
+
+    public String getImg2() {
+        return img2;
+    }
+
+    public void setImg2(String img2) {
+        this.img2 = img2;
+    }
+
+    public String getImg3() {
+        return img3;
+    }
+
+    public void setImg3(String img3) {
+        this.img3 = img3;
+    }
+
+    public String getImg4() {
+        return img4;
+    }
+
+    public void setImg4(String img4) {
+        this.img4 = img4;
     }
 }

@@ -68,6 +68,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 i.putExtra("img", mData.get(viewHolder.getAdapterPosition()).getImage_url());
                 i.putExtra("lat", mData.get(viewHolder.getAdapterPosition()).getLat());
                 i.putExtra("lng", mData.get(viewHolder.getAdapterPosition()).getLng());
+                i.putExtra("img2", mData.get(viewHolder.getAdapterPosition()).getImg2());
+                i.putExtra("img3", mData.get(viewHolder.getAdapterPosition()).getImg3());
+                i.putExtra("img4", mData.get(viewHolder.getAdapterPosition()).getImg4());
 
                 mContext.startActivity(i);
             }
@@ -84,7 +87,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         readCursorData(banesaShtepi,holder);
 
         holder.tv_cmimi.setText(mData.get(position).getCmimi());
-        holder.tv_banesa.setText(mData.get(position).getBanesaShtepi()+", "+mData.get(position).getKateDhoma()+"dhoma, "+mData.get(position).getSiperfaqja());
+        holder.tv_banesa.setText(mData.get(position).getBanesaShtepi()+", "+mData.get(position).getKateDhoma()+" , "+mData.get(position).getSiperfaqja());
         holder.tv_lokacioni.setText(mData.get(position).getLokacioni());
 
         //Load image from the internet and set it into ImageView using Glide
@@ -126,7 +129,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     if (banesaShtepi.getFavStatus().equals("0")){
                         banesaShtepi.setFavStatus("1");
                         favDB.insertIntoTheDatabase(banesaShtepi.getKey_id(),banesaShtepi.getBanesaShtepi(),banesaShtepi.getPershkrimi(),banesaShtepi.getLokacioni(),banesaShtepi.getCmimi(),
-                                banesaShtepi.getSiperfaqja(),banesaShtepi.getKateDhoma(),banesaShtepi.getTelefoni(),banesaShtepi.getImage_url(),banesaShtepi.getFavStatus(),banesaShtepi.getLat(),banesaShtepi.getLng());
+                                banesaShtepi.getSiperfaqja(),banesaShtepi.getKateDhoma(),banesaShtepi.getTelefoni(),banesaShtepi.getImage_url(),banesaShtepi.getFavStatus(),banesaShtepi.getLat(),banesaShtepi.getLng(),
+                                banesaShtepi.getImg2(),banesaShtepi.getImg3(),banesaShtepi.getImg4());
                         favBtn.setBackgroundResource(ic_baseline_red_24);
                     }else{
                         banesaShtepi.setFavStatus("0");

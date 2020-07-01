@@ -20,6 +20,9 @@ public class FavDB extends SQLiteOpenHelper {
     public static String KATE_DHOMA = "kateDhoma";
     public static String TELEFONI = "telefoni";
     public static String IMAGE_URL = "imageURL";
+    public static String IMG2 = "img2";
+    public static String IMG3 = "img3";
+    public static String IMG4 = "img4";
     public static String LAT = "lat";
     public static String LNG = "lng";
     public static String FAVORITE_STATUS = "fstatus";
@@ -27,7 +30,7 @@ public class FavDB extends SQLiteOpenHelper {
             +KEY_ID + " TEXT,"+ TITULLI+ " TEXT,"
             +PERSHKRIMI+" TEXT,"+ LOKACIONI+ " TEXT,"
             +CMIMI+" TEXT,"+SIPERFAQJA+" TEXT,"+KATE_DHOMA+" TEXT,"+TELEFONI+" TEXT,"
-            +IMAGE_URL+" TEXT,"+FAVORITE_STATUS+" TEXT,"+LAT+" TEXT,"+LNG+" TEXT)";
+            +IMAGE_URL+" TEXT,"+FAVORITE_STATUS+" TEXT,"+LAT+" TEXT,"+LNG+" TEXT,"+IMG2+" TEXT,"+IMG3+" TEXT,"+IMG4+" TEXT)";
 
     public FavDB(Context context){super(context,DATABASE_NAME,null,DB_VERSION);}
 
@@ -51,7 +54,8 @@ public class FavDB extends SQLiteOpenHelper {
         }
     }
 
-    public void insertIntoTheDatabase(String id,String titulli,String pershkrimi,String lokacioni,String cmimi,String siperfaqja,String kateDhoma,String telefoni,String imageUrl,String fav_status,String lat, String lng){
+    public void insertIntoTheDatabase(String id,String titulli,String pershkrimi,String lokacioni,String cmimi,String siperfaqja,String kateDhoma,String telefoni,String imageUrl,String fav_status,String lat, String lng,
+                                      String img2,String img3,String img4){
         SQLiteDatabase db;
         db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -67,6 +71,9 @@ public class FavDB extends SQLiteOpenHelper {
         cv.put(FAVORITE_STATUS,fav_status);
         cv.put(LAT,lat);
         cv.put(LNG,lng);
+        cv.put(IMG2,img2);
+        cv.put(IMG3,img3);
+        cv.put(IMG4,img4);
         db.insert(TABLE_NAME,null,cv);
         Log.d("FavDV Status", TITULLI+", favstatus - "+fav_status+" - . "+ cv);
     }

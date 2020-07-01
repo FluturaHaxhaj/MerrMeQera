@@ -66,7 +66,10 @@ public class FavoritesFragment extends Fragment {
                 String lokacioni = cursor.getString(cursor.getColumnIndex(FavDB.LOKACIONI));
                 String lat = cursor.getString(cursor.getColumnIndex(FavDB.LAT));
                 String lng = cursor.getString(cursor.getColumnIndex(FavDB.LNG));
-                FavItem favItem = new FavItem(id,title,pershkrimi,lokacioni,cmimi,siperfaqja,dhoma,telefoni,image,lat,lng);
+                String img2 = cursor.getString(cursor.getColumnIndex(FavDB.IMG2));
+                String img3 = cursor.getString(cursor.getColumnIndex(FavDB.IMG3));
+                String  img4= cursor.getString(cursor.getColumnIndex(FavDB.IMG4));
+                FavItem favItem = new FavItem(id,title,pershkrimi,lokacioni,cmimi,siperfaqja,dhoma,telefoni,image,lat,lng,img2,img3,img4);
                 favItemList.add(favItem);
 
             }

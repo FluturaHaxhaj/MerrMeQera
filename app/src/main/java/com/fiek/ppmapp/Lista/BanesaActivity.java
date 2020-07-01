@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -53,10 +54,16 @@ public class BanesaActivity extends AppCompatActivity implements OnMapReadyCallb
         String dhoma = getIntent().getExtras().getString("dhoma");
         telefoni = getIntent().getExtras().getString("tel");
         String image_url = getIntent().getExtras().getString("img");
+        String img2 = getIntent().getExtras().getString("img2");
+        String img3 = getIntent().getExtras().getString("img3");
+        String img4 = getIntent().getExtras().getString("img4");
         latS = getIntent().getExtras().getString("lat");
         lngS = getIntent().getExtras().getString("lng");
+
         lat = Double.parseDouble(latS);
         lng = Double.parseDouble(lngS);
+
+        String [] imagesURL = new String[]{image_url,img2,img3,img4};
 
 
 
@@ -68,9 +75,12 @@ public class BanesaActivity extends AppCompatActivity implements OnMapReadyCallb
         TextView tv_pershkrimi = findViewById(R.id.b_pershkrimi);
         TextView tv_dhoma = findViewById(R.id.b_dhoma);
         TextView tv_siperfaqja = findViewById(R.id.b_siperfaqja);
-        ImageView img = findViewById(R.id.b_thumbnail);
         Button telBtn = findViewById(R.id.tel_btn);
 
+        ViewPager viewPager = findViewById(R.id.view_pager_slide);
+
+        ViewPagerAdapterSlide adapter = new ViewPagerAdapterSlide(this,imagesURL);
+        viewPager.setAdapter(adapter);
 
         tv_banesa.setText(banesa);
         tv_siperfaqja.setText(siperfaqja);
@@ -89,7 +99,6 @@ public class BanesaActivity extends AppCompatActivity implements OnMapReadyCallb
         });
         RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
 
-        Glide.with(this).load(image_url).apply(requestOptions).into(img);
     }
     private void makePhoneCall(){
         String numri = telefoni;
