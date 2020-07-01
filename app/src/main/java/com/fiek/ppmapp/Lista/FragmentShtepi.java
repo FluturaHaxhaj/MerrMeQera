@@ -90,6 +90,8 @@ public class FragmentShtepi extends Fragment {
                                 shtepi.setTelefoni(jsonObject.getString("telefoni"));
                                 shtepi.setImage_url(jsonObject.getString("image_url"));
                                 shtepi.setFavStatus(jsonObject.getString("favStatus"));
+                                shtepi.setLat(jsonObject.getString("lat"));
+                                shtepi.setLng(jsonObject.getString("lng"));
                                 lstShtepi.add(shtepi);
 
                             }

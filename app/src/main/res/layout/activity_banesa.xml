@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Lista.BanesaActivity">
 
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -163,9 +164,12 @@
                 app:cardCornerRadius="30dp"
                 android:layout_below="@+id/b_pershkrimi">
 
-                <com.google.android.gms.maps.MapView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+           <fragment
+               android:name="com.google.android.gms.maps.SupportMapFragment"
+               android:id="@+id/map"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               />
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
 

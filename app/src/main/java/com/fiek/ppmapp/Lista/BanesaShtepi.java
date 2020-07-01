@@ -11,16 +11,20 @@ public class BanesaShtepi {
     private String telefoni;
     private String image_url;
     private String favStatus;
+    private String lat;
+    private String lng;
 
     public BanesaShtepi() {
     }
 
-    public BanesaShtepi(String key_id, String banesaShtepi, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kateDhoma, String telefoni, String image_url, String favStatus) {
+    public BanesaShtepi(String key_id, String banesaShtepi, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kateDhoma, String telefoni, String image_url, String favStatus,String lat,String lng) {
         this.key_id = key_id;
         this.banesaShtepi = banesaShtepi;
         this.pershkrimi = pershkrimi;
         this.lokacioni = lokacioni;
         this.cmimi = cmimi;
+        this.lng = lng;
+        this.lat = lat;
         this.siperfaqja = siperfaqja;
         this.kateDhoma = kateDhoma;
         this.telefoni = telefoni;
@@ -106,5 +110,21 @@ public class BanesaShtepi {
 
     public void setFavStatus(String favStatus) {
         this.favStatus = favStatus;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
     }
 }

@@ -66,6 +66,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 i.putExtra("dhoma", mData.get(viewHolder.getAdapterPosition()).getKateDhoma());
                 i.putExtra("tel",mData.get(viewHolder.getAdapterPosition()).getTelefoni());
                 i.putExtra("img", mData.get(viewHolder.getAdapterPosition()).getImage_url());
+                i.putExtra("lat", mData.get(viewHolder.getAdapterPosition()).getLat());
+                i.putExtra("lng", mData.get(viewHolder.getAdapterPosition()).getLng());
 
                 mContext.startActivity(i);
             }
@@ -124,7 +126,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     if (banesaShtepi.getFavStatus().equals("0")){
                         banesaShtepi.setFavStatus("1");
                         favDB.insertIntoTheDatabase(banesaShtepi.getKey_id(),banesaShtepi.getBanesaShtepi(),banesaShtepi.getPershkrimi(),banesaShtepi.getLokacioni(),banesaShtepi.getCmimi(),
-                                banesaShtepi.getSiperfaqja(),banesaShtepi.getKateDhoma(),banesaShtepi.getTelefoni(),banesaShtepi.getImage_url(),banesaShtepi.getFavStatus());
+                                banesaShtepi.getSiperfaqja(),banesaShtepi.getKateDhoma(),banesaShtepi.getTelefoni(),banesaShtepi.getImage_url(),banesaShtepi.getFavStatus(),banesaShtepi.getLat(),banesaShtepi.getLng());
                         favBtn.setBackgroundResource(ic_baseline_red_24);
                     }else{
                         banesaShtepi.setFavStatus("0");

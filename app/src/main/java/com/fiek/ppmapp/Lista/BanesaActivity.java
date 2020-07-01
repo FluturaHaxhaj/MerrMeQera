@@ -7,6 +7,14 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.fiek.ppmapp.R;
 
@@ -22,23 +30,35 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BanesaActivity extends AppCompatActivity {
+public class BanesaActivity extends AppCompatActivity implements OnMapReadyCallback {
     private static final int REQUEST_CALL = 1;
-    String telefoni;
+    String telefoni,lokacioni;
+    Double lat,lng;
+    String latS,lngS;
+    private GoogleMap googleMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_banesa);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         String banesa = getIntent().getExtras().getString("banesa");
         String pershkrimi = getIntent().getExtras().getString("pershkrimi");
-        String lokacioni = getIntent().getExtras().getString("lokacioni");
+        lokacioni = getIntent().getExtras().getString("lokacioni");
         String cmimi = getIntent().getExtras().getString("cmimi");
         String siperfaqja = getIntent().getExtras().getString("siperfaqja");
         String dhoma = getIntent().getExtras().getString("dhoma");
         telefoni = getIntent().getExtras().getString("tel");
         String image_url = getIntent().getExtras().getString("img");
+        latS = getIntent().getExtras().getString("lat");
+        lngS = getIntent().getExtras().getString("lng");
+        lat = Double.parseDouble(latS);
+        lng = Double.parseDouble(lngS);
+
+
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar_id);
         collapsingToolbarLayout.setTitleEnabled(true);
@@ -90,5 +110,16 @@ public class BanesaActivity extends AppCompatActivity {
                 Toast.makeText(this,"Nuk keni akses",Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+
+
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        map.addMarker(new MarkerOptions()
+                .position(new LatLng(lat, lng))
+                .title(lokacioni));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng),13.0f));
     }
 }

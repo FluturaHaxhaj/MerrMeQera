@@ -90,6 +90,8 @@ public class FragmentBanesa extends Fragment {
                                 banesa.setTelefoni(jsonObject.getString("telefoni"));
                                 banesa.setImage_url(jsonObject.getString("image_url"));
                                 banesa.setFavStatus(jsonObject.getString("favStatus"));
+                                banesa.setLat(jsonObject.getString("lat"));
+                                banesa.setLng(jsonObject.getString("lng"));
                                 lstBanesa.add(banesa);
 
                             }

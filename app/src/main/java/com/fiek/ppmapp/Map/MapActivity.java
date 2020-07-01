@@ -72,8 +72,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 for (int i = 0;i<jsonArray2.length();i++){
                                     JSONObject jsonObject = jsonArray2.getJSONObject(i);
 
-                                    double lat = jsonObject.getDouble("lat");
-                                    double lng = jsonObject.getDouble("lng");
+                                    String latS = jsonObject.getString("lat");
+                                    String lngS = jsonObject.getString("lng");
+                                    double lat = Double.parseDouble(latS);
+                                    double lng = Double.parseDouble(lngS);
                                     String name = jsonObject.getString("lokacioni");
                                     LatLng latLng = new LatLng(lat, lng);
                                     MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(name);

@@ -53,6 +53,8 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
                 i.putExtra("dhoma", favItemList.get(viewHolder.getAdapterPosition()).getDhoma());
                 i.putExtra("tel",favItemList.get(viewHolder.getAdapterPosition()).getTelefoni());
                 i.putExtra("img", favItemList.get(viewHolder.getAdapterPosition()).getImg());
+                i.putExtra("lat", favItemList.get(viewHolder.getAdapterPosition()).getLat());
+                i.putExtra("lng", favItemList.get(viewHolder.getAdapterPosition()).getLng());
 
                 context.startActivity(i);
             }

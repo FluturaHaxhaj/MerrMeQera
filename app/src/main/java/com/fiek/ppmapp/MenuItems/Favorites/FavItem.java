@@ -10,16 +10,20 @@ public class FavItem {
     private String dhoma;
     private String telefoni;
     private String img;
+    private String lat;
+    private String lng;
 
     public FavItem() {
     }
 
-    public FavItem(String key_id, String titulli,String pershkrimi, String lokacioni, String cmimi,String siperfaqja,String dhoma, String telefoni,String img) {
+    public FavItem(String key_id, String titulli,String pershkrimi, String lokacioni, String cmimi,String siperfaqja,String dhoma, String telefoni,String img,String lat,String lng) {
         this.key_id = key_id;
         this.titulli = titulli;
         this.lokacioni = lokacioni;
         this.cmimi = cmimi;
         this.img = img;
+        this.lat = lat;
+        this.lng = lng;
         this.pershkrimi = pershkrimi;
         this.siperfaqja = siperfaqja;
         this.dhoma = dhoma;
@@ -96,5 +100,21 @@ public class FavItem {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
     }
 }
