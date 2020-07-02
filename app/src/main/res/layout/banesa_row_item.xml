@@ -14,8 +14,7 @@
         android:padding="16dp"
         android:id="@id/container">
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
@@ -33,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cmimi"
+                android:fontFamily="@font/raleway_semibold"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,10 +43,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="7dp"
                 android:text="Banesa"
+                android:fontFamily="@font/raleway_semibold"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/raleway_semibold"
                 android:drawableLeft="@drawable/ic_baseline_location_on_24"
                 android:text="Lokacioni"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -64,8 +67,8 @@
 
             <Button
                 android:id="@+id/b_favBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@drawable/ic_baseline_fshadow_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

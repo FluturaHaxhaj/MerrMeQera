@@ -68,7 +68,7 @@ public class FragmentShtepi extends Fragment {
     }
 
     private void jsonrequest(){
-        String url = "https://c9dd8ea67bfc.ngrok.io";
+        String url = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/badeeadde9d443bd6bbf7ae5a13f413d3a649abc/merrmeqira.json";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override

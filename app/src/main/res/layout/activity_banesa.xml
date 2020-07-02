@@ -13,7 +13,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarlayout_id"
         android:layout_width="match_parent"
-        android:layout_height="480dp"
+        android:layout_height="520dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -42,7 +42,7 @@
 
                 <androidx.viewpager.widget.ViewPager
                     android:layout_width="match_parent"
-                    android:layout_height="244dp"
+                    android:layout_height="270dp"
                     android:id="@+id/view_pager_slide"
                     android:background="@drawable/loading_shape"/>
 
@@ -61,6 +61,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Banesa"
+                        android:fontFamily="@font/raleway_semibold"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -73,6 +74,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/raleway_semibold"
                             android:text="Siperfaqja:" />
 
                         <TextView
@@ -82,6 +84,7 @@
                             android:layout_marginLeft="8dp"
                             android:layout_marginTop="5dp"
                             android:layout_toRightOf="@+id/sip_statike"
+                            android:fontFamily="@font/raleway_semibold"
                             android:text="Siperfaqja" />
                     </RelativeLayout>
 
@@ -94,7 +97,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="Numri i dhomave:" />
+                            android:fontFamily="@font/raleway_semibold"
+                            android:text="Numri :" />
 
                         <TextView
                             android:id="@+id/b_dhoma"
@@ -102,6 +106,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/raleway_semibold"
                             android:layout_toRightOf="@+id/dhoma_statike"
                             android:text="Dhoma" />
 
@@ -116,6 +121,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/raleway_semibold"
                             android:text="Cmimi:" />
 
                         <TextView
@@ -127,6 +133,7 @@
                             android:layout_toRightOf="@+id/cmimi_statik"
                             android:text="Cmimi"
                             android:textColor="#fff"
+                            android:fontFamily="@font/raleway_semibold"
                             android:textSize="15sp" />
 
                     </RelativeLayout>
@@ -155,6 +162,7 @@
                     android:id="@+id/b_pershkrimi"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/raleway_semibold"
                     android:text="Pershkrimi" />
 
                 <androidx.cardview.widget.CardView
