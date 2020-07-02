@@ -66,7 +66,7 @@
                 android:id="@+id/b_favBtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@drawable/ic_baseline_red_24"
+                android:background="@drawable/ic_baseline_fshadow_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
