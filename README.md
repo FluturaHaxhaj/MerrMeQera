@@ -19,6 +19,9 @@ Qirradhenesit do të kenë një platforme në të cilin mund të paraqesin prona
 kenë mundësine të kërkojnë dhe të vendosin për cilëndo pronë që u përshtatet.
 
 # Screenshots
-<img src="images/login.jpg" height="300">
+<img src="images/login.jpg" height="300"><img src="images/register.jpg" height="300">
+<img src="images/dashboard.jpg" height="300"><img src="images/menu.jpg" height="300">
+
+
  
  
