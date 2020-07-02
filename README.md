@@ -10,7 +10,7 @@
 * Komunikimi me pjese harduerike - Kamera
 * Google Map Cluster 
 
-# About
+# Përshkrimi 
 MerrMeQira është një aplikacion i dedikuar për qira të patundshmërive ekzkluzivisht në Prishtinë.
 Përmes këtij aplikacioni synojmë të lehtesojme kërkimin dhe komunikimin në mes të qirradhënësit dhe qirramarrësit potencial. 
 Qirradhenesit do të kenë një platforme në të cilin mund të paraqesin pronat e tyre dhe specifikat e tjera, ndërsa qirramarrësit do të
