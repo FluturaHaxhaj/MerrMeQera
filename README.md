@@ -27,7 +27,7 @@ Poashtu kemi implementuar dhe hartën me cluster ku të dhënat (lat,lng) për s
 <img src="images/login.jpg" height="300">&nbsp; <img src="images/register.jpg" height="300"><br>
 <img src="images/dashboard.jpg" height="300">&nbsp;<img src="images/menu.jpg" height="300"><br>
 <img src="images/banesa.jpg" height="300">&nbsp;<img src="images/shtepia.jpg" height="300">&nbsp;<img src="images/favorites.jpg" height="300">&nbsp;<img src="images/detaje.jpg" height="300">&nbsp;<img src="images/detaje2.jpg" height="300"><br>
-<img src="images/clusterharta.jpg" height="300">&nbsp;<img src="images/hartadetaje.jpg" height="300">&nbsp;<img src="images/rrethnesh.jpg" height="300">&nbsp;<img src="images/feedback.jpg" height="300">
+<img src="images/clusterharta.jpg" height="300">&nbsp;<img src="images/hartedetaje.jpg" height="300">&nbsp;<img src="images/rrethnesh.jpg" height="300">&nbsp;<img src="images/feedback.jpg" height="300">
 
 
 
