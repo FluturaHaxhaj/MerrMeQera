@@ -1,4 +1,5 @@
 package com.fiek.ppmapp.Map;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -32,7 +33,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private GoogleMap googleMap;
     private JSONArray jsonArray;
-    private RequestQueue requestQueue ;
+    private RequestQueue requestQueue;
     private List<MarkerOptions> listMarkers = new ArrayList<>();
     private ClusterManager<MarkerClusterItem> clusterManager;
 
@@ -42,22 +43,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_map);
 
-        SupportMapFragment supportMapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.googleMap);
+        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
         supportMapFragment.getMapAsync(this);
     }
 
-    private class MapTask extends AsyncTask<Void,Void,Void> {
+    private class MapTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            String url = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/badeeadde9d443bd6bbf7ae5a13f413d3a649abc/merrmeqira.json";
+            String url = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/04627ae854dd5920e97c3c9253fdec0db6ae1f54/merrmeqira.json";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             try {
                                 JSONArray jsonArray = response.getJSONArray("Banesat");
-                                for (int i = 0;i<jsonArray.length();i++){
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                                     double lat = jsonObject.getDouble("lat");
@@ -67,12 +68,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                     String siperfaqja = jsonObject.getString("siperfaqja");
                                     String cmimi = jsonObject.getString("cmimi");
                                     LatLng latLng = new LatLng(lat, lng);
-                                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(banesMeQera+" ne lagjen "+lokacioni+" me siperfaqe " +
-                                            siperfaqja+ ", cmimi "+cmimi);
+                                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(banesMeQera + " ne lagjen " + lokacioni + " me siperfaqe " +
+                                            siperfaqja + ", cmimi " + cmimi);
                                     listMarkers.add(markerOptions);
                                 }
                                 JSONArray jsonArray2 = response.getJSONArray("Shtepite");
-                                for (int i = 0;i<jsonArray2.length();i++){
+                                for (int i = 0; i < jsonArray2.length(); i++) {
                                     JSONObject jsonObject = jsonArray2.getJSONObject(i);
 
                                     String latS = jsonObject.getString("lat");
@@ -84,8 +85,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                     String siperfaqja = jsonObject.getString("siperfaqja");
                                     String cmimi = jsonObject.getString("cmimi");
                                     LatLng latLng = new LatLng(lat, lng);
-                                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(banesMeQera+" ne lagjen "+lokacioni+" me siperfaqe " +
-                                            siperfaqja+ ", cmimi "+cmimi);
+                                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(banesMeQera + " ne lagjen " + lokacioni + " me siperfaqe " +
+                                            siperfaqja + ", cmimi " + cmimi);
                                     listMarkers.add(markerOptions);
                                 }
 
@@ -103,7 +104,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
             });
             requestQueue = Volley.newRequestQueue(getApplicationContext());
-            requestQueue.add(request) ;
+            requestQueue.add(request);
 
             return null;
         }
@@ -127,7 +128,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         clusterManager.setOnClusterClickListener(cluster -> {
             Collection<MarkerClusterItem> listItems = cluster.getItems();
             List<String> listNames = new ArrayList<>();
-            for (MarkerClusterItem item : listItems){
+            for (MarkerClusterItem item : listItems) {
                 listNames.add(item.getTitle());
             }
             googleMap.animateCamera(CameraUpdateFactory.newLatLng(cluster.getPosition()), new GoogleMap.CancelableCallback() {
@@ -136,15 +137,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     ListViewDialog listViewDialog = new ListViewDialog(MapActivity.this, listNames);
                     listViewDialog.showDialog();
                 }
+
                 @Override
-                public void onCancel() { }
+                public void onCancel() {
+                }
             });
             return true;
         });
     }
 
     private void addClusterItems() {
-        for(MarkerOptions markerOptions : listMarkers){
+        for (MarkerOptions markerOptions : listMarkers) {
             MarkerClusterItem clusterItem = new MarkerClusterItem(markerOptions.getPosition(), markerOptions.getTitle());
             clusterManager.addItem(clusterItem);
         }

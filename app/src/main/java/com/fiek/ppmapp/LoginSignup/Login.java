@@ -36,11 +36,11 @@ import java.util.HashMap;
 public class Login extends AppCompatActivity {
 
     Button callSignUp, login_btn;
-    ImageView image,profilePic;
+    ImageView image, profilePic;
     NavigationView navigationView;
     TextView logoText, sloganText;
     TextInputLayout username, password;
-    EditText  usernameEditText , passwordEditText;
+    EditText usernameEditText, passwordEditText;
     CheckBox remember;
     ProgressBar progressBar;
 
@@ -64,9 +64,9 @@ public class Login extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
 
 
-        SessionManager sessionManager = new SessionManager(Login.this,SessionManager.SESSION_REMEMBER);
-        if(sessionManager.checkRemember()){
-            HashMap<String,String> rememberDetais = sessionManager.getRememberDetailFromSession();
+        SessionManager sessionManager = new SessionManager(Login.this, SessionManager.SESSION_REMEMBER);
+        if (sessionManager.checkRemember()) {
+            HashMap<String, String> rememberDetais = sessionManager.getRememberDetailFromSession();
             usernameEditText.setText(rememberDetais.get(SessionManager.KEY_SESSIONUSERNAME));
             passwordEditText.setText(rememberDetais.get(SessionManager.KEY_SESSIONPASSWORD));
 
@@ -112,15 +112,14 @@ public class Login extends AppCompatActivity {
     }
 
 
-
     private void isUser() {
         progressBar.setVisibility(View.VISIBLE);
         final String userEnteredUsername = username.getEditText().getText().toString().trim();
         final String userEnteredPassword = password.getEditText().getText().toString().trim();
 
-        if(remember.isChecked()){
-            SessionManager sessionManager = new SessionManager(Login.this,SessionManager.SESSION_REMEMBER);
-            sessionManager.createRememberSession(userEnteredUsername,userEnteredPassword);
+        if (remember.isChecked()) {
+            SessionManager sessionManager = new SessionManager(Login.this, SessionManager.SESSION_REMEMBER);
+            sessionManager.createRememberSession(userEnteredUsername, userEnteredPassword);
         }
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
@@ -133,7 +132,7 @@ public class Login extends AppCompatActivity {
                     username.setErrorEnabled(false);
                     String passwordFromDB = dataSnapshot.child(userEnteredUsername).child("password").getValue(String.class);
                     try {
-                        if (checkPassword(userEnteredPassword,passwordFromDB)) {
+                        if (checkPassword(userEnteredPassword, passwordFromDB)) {
                             username.setError(null);
                             username.setErrorEnabled(false);
                             String nameFromDB = dataSnapshot.child(userEnteredUsername).child("name").getValue(String.class);
@@ -143,9 +142,8 @@ public class Login extends AppCompatActivity {
 
 
                             //User Session
-                            SessionManager sessionManager = new SessionManager(Login.this,SessionManager.SESSION_USERSESSION);
-                            sessionManager.createLoginSession(nameFromDB,usernameFromDB,phoneNoFromDB,emailFromDB,passwordFromDB);
-
+                            SessionManager sessionManager = new SessionManager(Login.this, SessionManager.SESSION_USERSESSION);
+                            sessionManager.createLoginSession(nameFromDB, usernameFromDB, phoneNoFromDB, emailFromDB, passwordFromDB);
 
 
                             Intent intent = new Intent(getApplicationContext(), Dashboard.class);
@@ -174,27 +172,28 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-    public boolean checkPassword(String password,String SaltedHash) throws NoSuchAlgorithmException {
+
+    public boolean checkPassword(String password, String SaltedHash) throws NoSuchAlgorithmException {
 
         String[] parts = SaltedHash.split("/");
         String saltString = parts[0];
         String hash = parts[1];
 
-        String passwordCandidate = saltString+password;
+        String passwordCandidate = saltString + password;
 
         MessageDigest md = MessageDigest.getInstance("SHA");
         byte[] messageDigest = md.digest(passwordCandidate.getBytes());
         BigInteger no = new BigInteger(1, messageDigest);
         String hashtext = no.toString(16);
-        if(hash.equals(hashtext)) {
+        if (hash.equals(hashtext)) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
 
-    public void callSignUpScreen(View view){
+    public void callSignUpScreen(View view) {
         Intent intent = new Intent(Login.this, SignUp.class);
         Pair[] pairs = new Pair[7];
 

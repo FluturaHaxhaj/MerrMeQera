@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.fiek.ppmapp.R;
 
 import java.util.ArrayList;
@@ -29,23 +30,23 @@ import java.util.List;
 public class FragmentBanesa extends Fragment {
 
     private RecyclerView recyclerView;
-    private RequestQueue requestQueue ;
+    private RequestQueue requestQueue;
     private List<BanesaShtepi> lstBanesa;
 
 
-
     View v;
-    public FragmentBanesa(){
+
+    public FragmentBanesa() {
 
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      v = inflater.inflate(R.layout.banesa_fragment,container,false);
+        v = inflater.inflate(R.layout.banesa_fragment, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerviewid);
 
-    return v;
+        return v;
 
     }
 
@@ -57,7 +58,7 @@ public class FragmentBanesa extends Fragment {
         requestTask.execute();
     }
 
-    private class RequestTask extends AsyncTask<Void,Void,Void>{
+    private class RequestTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -67,15 +68,15 @@ public class FragmentBanesa extends Fragment {
     }
 
 
-    private void jsonrequest(){
-        String url = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/badeeadde9d443bd6bbf7ae5a13f413d3a649abc/merrmeqira.json";
+    private void jsonrequest() {
+        String url = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/04627ae854dd5920e97c3c9253fdec0db6ae1f54/merrmeqira.json";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("Banesat");
-                            for (int i = 0;i<jsonArray.length();i++){
+                            for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                                 BanesaShtepi banesa = new BanesaShtepi();
@@ -110,11 +111,11 @@ public class FragmentBanesa extends Fragment {
             }
         });
         requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(request) ;
+        requestQueue.add(request);
     }
 
     private void setuprecyclerview(List<BanesaShtepi> lstBanesa) {
-        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(getContext(),lstBanesa) ;
+        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(getContext(), lstBanesa);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(myadapter);
 

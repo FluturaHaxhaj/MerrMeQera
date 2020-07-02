@@ -22,13 +22,13 @@ public class Lista extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_lista);
 
-        tabLayout = (TabLayout)findViewById(R.id.tablayout_id);
-        viewPager = (ViewPager)findViewById(R.id.viewpager_id);
+        tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
+        viewPager = (ViewPager) findViewById(R.id.viewpager_id);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         //Add Fargment
-        adapter.AddFragment(new FragmentBanesa(),"Banesa");
-        adapter.AddFragment(new FragmentShtepi(),"Shtëpi");
+        adapter.AddFragment(new FragmentBanesa(), "Banesa");
+        adapter.AddFragment(new FragmentShtepi(), "Shtëpi");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

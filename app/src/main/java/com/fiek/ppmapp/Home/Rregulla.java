@@ -55,7 +55,7 @@ public class Rregulla extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                if (position < (adapter.getCount() -1) && position < (colors.length - 1)) {
+                if (position < (adapter.getCount() - 1) && position < (colors.length - 1)) {
                     viewPager.setBackgroundColor(
 
                             (Integer) argbEvaluator.evaluate(
@@ -64,9 +64,7 @@ public class Rregulla extends AppCompatActivity {
                                     colors[position + 1]
                             )
                     );
-                }
-
-                else {
+                } else {
                     viewPager.setBackgroundColor(colors[colors.length - 1]);
                 }
             }

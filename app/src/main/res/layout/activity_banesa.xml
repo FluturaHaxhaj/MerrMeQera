@@ -10,142 +10,142 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbarlayout_id"
-        android:layout_width="match_parent"
-        android:layout_height="520dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingtoolbar_id"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbarlayout_id"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/backgroundfragment"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="28dp"
-            app:layout_scrollFlags="exitUntilCollapsed|scroll"
-            app:title="Përshkrimi i Banesës"
-            >
+            android:layout_height="520dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"></androidx.appcompat.widget.Toolbar>
-
-
-            <RelativeLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingtoolbar_id"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="50dp">
+                android:background="@color/backgroundfragment"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="28dp"
+                app:layout_scrollFlags="exitUntilCollapsed|scroll"
+                app:title="Përshkrimi i Banesës">
 
-                <androidx.viewpager.widget.ViewPager
+                <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
-                    android:layout_height="270dp"
-                    android:id="@+id/view_pager_slide"
-                    android:background="@drawable/loading_shape"/>
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"></androidx.appcompat.widget.Toolbar>
 
 
-                <LinearLayout
-                    android:id="@+id/permbajtja"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_below="@+id/view_pager_slide"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="50dp">
 
-
-                    <TextView
-                        android:id="@+id/b_banesa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Banesa"
-                        android:fontFamily="@font/raleway_semibold"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <RelativeLayout
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/view_pager_slide"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="270dp"
+                        android:background="@drawable/loading_shape" />
 
-                        <TextView
-                            android:id="@+id/sip_statike"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="@font/raleway_semibold"
-                            android:text="Siperfaqja:" />
 
-                        <TextView
-                            android:id="@+id/b_siperfaqja"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/sip_statike"
-                            android:fontFamily="@font/raleway_semibold"
-                            android:text="Siperfaqja" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
+                    <LinearLayout
+                        android:id="@+id/permbajtja"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="130dp"
+                        android:layout_below="@+id/view_pager_slide"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
 
                         <TextView
-                            android:id="@+id/dhoma_statike"
+                            android:id="@+id/b_banesa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
                             android:fontFamily="@font/raleway_semibold"
-                            android:text="Numri :" />
+                            android:text="Banesa"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/b_dhoma"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="@font/raleway_semibold"
-                            android:layout_toRightOf="@+id/dhoma_statike"
-                            android:text="Dhoma" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/sip_statike"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:text="Siperfaqja:" />
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/b_siperfaqja"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_toRightOf="@+id/sip_statike"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:text="Siperfaqja" />
+                        </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/cmimi_statik"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="@font/raleway_semibold"
-                            android:text="Cmimi:" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/b_cmimi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/cmimi_statik"
-                            android:text="Cmimi"
-                            android:textColor="#fff"
-                            android:fontFamily="@font/raleway_semibold"
-                            android:textSize="15sp" />
+                            <TextView
+                                android:id="@+id/dhoma_statike"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:text="Numri :" />
 
-                    </RelativeLayout>
-                </LinearLayout>
+                            <TextView
+                                android:id="@+id/b_dhoma"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_toRightOf="@+id/dhoma_statike"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:text="Dhoma" />
 
-            </RelativeLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/cmimi_statik"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:text="Cmimi:" />
+
+                            <TextView
+                                android:id="@+id/b_cmimi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_toRightOf="@+id/cmimi_statik"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:text="Cmimi"
+                                android:textColor="#fff"
+                                android:textSize="15sp" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
 
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-        >
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+            >
 
-    </com.google.android.material.appbar.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
 
         <androidx.core.widget.NestedScrollView
@@ -180,13 +180,13 @@
                         android:layout_height="match_parent" />
 
                     <Button
+                        android:id="@+id/hap_harten"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/hap_harten"
                         android:layout_gravity="bottom"
                         android:background="@color/backgroundfragment"
-                        android:textColor="@color/cardview_light_background"
-                        android:text="Hap Harten"/>
+                        android:text="Hap Harten"
+                        android:textColor="@color/cardview_light_background" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -201,8 +201,8 @@
         android:id="@+id/tel_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@color/backgroundfragment"
-        android:textColor="@color/cardview_light_background"
         android:text="Thirr tani "
-        android:layout_alignParentBottom="true"/>
+        android:textColor="@color/cardview_light_background" />
 </RelativeLayout>

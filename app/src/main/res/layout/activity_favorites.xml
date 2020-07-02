@@ -8,22 +8,21 @@
     tools:context=".MenuItems.Favorites.FavoritesActivity">
 
     <com.google.android.material.tabs.TabLayout
-        android:layout_height="wrap_content"
+        android:id="@+id/tablayout_id_fav"
         android:layout_width="match_parent"
-        app:tabTextColor="@color/cardview_light_background"
+        android:layout_height="wrap_content"
         android:background="@color/backgroundfragment"
-        app:tabMode="fixed"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/colorwhite"
-        android:id="@+id/tablayout_id_fav">
-        
+        app:tabMode="fixed"
+        app:tabTextColor="@color/cardview_light_background">
+
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager_id_fav"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewpager_id_fav">
-
+        android:layout_height="match_parent">
 
 
     </androidx.viewpager.widget.ViewPager>

@@ -20,6 +20,7 @@ public class Feedback extends AppCompatActivity {
     EditText mFeedback;
     Button mSendFeedback;
     ImageView backBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,9 +81,7 @@ public class Feedback extends AppCompatActivity {
         });
 
 
-
     }
-
 
 
 }

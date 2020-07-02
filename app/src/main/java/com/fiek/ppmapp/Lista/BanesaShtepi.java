@@ -20,8 +20,8 @@ public class BanesaShtepi {
     public BanesaShtepi() {
     }
 
-    public BanesaShtepi(String key_id, String banesaShtepi, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kateDhoma, String telefoni, String image_url, String favStatus,String lat,String lng,
-                        String img2,String img3,String img4) {
+    public BanesaShtepi(String key_id, String banesaShtepi, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kateDhoma, String telefoni, String image_url, String favStatus, String lat, String lng,
+                        String img2, String img3, String img4) {
         this.key_id = key_id;
         this.banesaShtepi = banesaShtepi;
         this.pershkrimi = pershkrimi;

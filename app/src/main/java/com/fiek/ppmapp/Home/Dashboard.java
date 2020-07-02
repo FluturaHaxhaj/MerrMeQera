@@ -51,7 +51,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     public static final int CAMERA_REQUEST_CODE = 102;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    RelativeLayout rrethNesh, lokacioni,listaView,rregulla;
+    RelativeLayout rrethNesh, lokacioni, listaView, rregulla;
     ImageView menuIcon, profilePic;
     TextView menuProfileName;
     String currentPhotoPath;
@@ -93,7 +93,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         });
 
         rregulla.setOnClickListener(v -> {
-            Intent rregullaIntent = new Intent(getApplicationContext(),Rregulla.class);
+            Intent rregullaIntent = new Intent(getApplicationContext(), Rregulla.class);
             startActivity(rregullaIntent);
         });
         navigationView.bringToFront();
@@ -162,7 +162,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     private void uploadImageToFirebase(Uri imageUri) {
         String fullName = showUserName();
         StorageReference fileRef = storageReference.child("users/" + fullName + "/profile.jpg");
-        fileRef.putFile(imageUri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profilePic))).addOnFailureListener(e -> Snackbar.make(drawerLayout,"Ngarkimi i fotos deshtoi.",Snackbar.LENGTH_LONG)
+        fileRef.putFile(imageUri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profilePic))).addOnFailureListener(e -> Snackbar.make(drawerLayout, "Ngarkimi i fotos deshtoi.", Snackbar.LENGTH_LONG)
                 .setAction("Provo Perseri", v -> askCameraPermission()));
 
     }
@@ -224,7 +224,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
-    private void naviagtionDrawer(){
+    private void naviagtionDrawer() {
 
         //Naviagtion Drawer
         navigationView.bringToFront();
@@ -232,7 +232,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         navigationView.setCheckedItem(R.id.nav_home);
 
         menuIcon.setOnClickListener(view -> {
-            if(drawerLayout.isDrawerVisible(GravityCompat.START))
+            if (drawerLayout.isDrawerVisible(GravityCompat.START))
                 drawerLayout.closeDrawer(GravityCompat.START);
             else drawerLayout.openDrawer(GravityCompat.START);
         });

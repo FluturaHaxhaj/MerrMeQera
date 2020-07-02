@@ -30,20 +30,20 @@ public class FragmentShtepi extends Fragment {
 
 
     private RecyclerView recyclerView;
-    private RequestQueue requestQueue ;
+    private RequestQueue requestQueue;
     private List<BanesaShtepi> lstShtepi;
 
 
-
     View v;
-    public FragmentShtepi(){
+
+    public FragmentShtepi() {
 
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.shtepi_fragment,container,false);
+        v = inflater.inflate(R.layout.shtepi_fragment, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerviewshtepiid);
 
         return v;
@@ -58,7 +58,7 @@ public class FragmentShtepi extends Fragment {
         requestTask.execute();
     }
 
-    private class RequestTask extends AsyncTask<Void,Void,Void> {
+    private class RequestTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -67,15 +67,15 @@ public class FragmentShtepi extends Fragment {
         }
     }
 
-    private void jsonrequest(){
-        String url = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/badeeadde9d443bd6bbf7ae5a13f413d3a649abc/merrmeqira.json";
+    private void jsonrequest() {
+        String url = "https://gist.githubusercontent.com/FluturaHaxhaj/dab0be91b25b9a5e52dfc49c595c10e5/raw/04627ae854dd5920e97c3c9253fdec0db6ae1f54/merrmeqira.json";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("Shtepite");
-                            for (int i = 0;i<jsonArray.length();i++){
+                            for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                                 BanesaShtepi shtepi = new BanesaShtepi();
@@ -110,11 +110,11 @@ public class FragmentShtepi extends Fragment {
             }
         });
         requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(request) ;
+        requestQueue.add(request);
     }
 
     private void setuprecyclerview(List<BanesaShtepi> lstShtepi) {
-        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(getContext(),lstShtepi) ;
+        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(getContext(), lstShtepi);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(myadapter);
 

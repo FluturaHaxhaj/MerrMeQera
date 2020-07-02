@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="200dp"
     android:background="@drawable/menubackground"
     android:padding="30dp">
 
 
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_pic"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="60dp"
-        android:src="@drawable/profilepic"
-        android:rotation="90"
-        app:civ_border_width="2dp"
         android:background="@drawable/profilepic_background"
-        app:civ_border_color="#000"/>
+        android:rotation="90"
+        android:src="@drawable/profilepic"
+        app:civ_border_color="#000"
+        app:civ_border_width="2dp" />
 
     <TextView
         android:id="@+id/menu_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile Name"
-        android:textColor="@color/cardview_light_background"
-        android:textSize="25dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="85dp"
-        android:layout_toRightOf="@+id/profile_pic"/>
+        android:layout_toRightOf="@+id/profile_pic"
+        android:text="Profile Name"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="25dp" />
 
 
 </RelativeLayout>

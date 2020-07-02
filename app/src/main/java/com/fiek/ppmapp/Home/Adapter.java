@@ -1,5 +1,7 @@
 package com.fiek.ppmapp.Home;
+
 import com.fiek.ppmapp.R;
+
 import android.content.Context;
 import android.content.Intent;
 
@@ -64,6 +66,6 @@ public class Adapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View)object);
+        container.removeView((View) object);
     }
 }

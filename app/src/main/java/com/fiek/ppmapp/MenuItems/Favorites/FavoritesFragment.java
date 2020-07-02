@@ -48,13 +48,13 @@ public class FavoritesFragment extends Fragment {
     }
 
     private void loadData() {
-        if (favAdapter != null){
+        if (favAdapter != null) {
             favItemList.clear();
         }
         SQLiteDatabase db = favDB.getReadableDatabase();
         Cursor cursor = favDB.select_all_favorite_list();
         try {
-            while (cursor.moveToNext()){
+            while (cursor.moveToNext()) {
                 String title = cursor.getString(cursor.getColumnIndex(FavDB.TITULLI));
                 String id = cursor.getString(cursor.getColumnIndex(FavDB.KEY_ID));
                 String image = cursor.getString(cursor.getColumnIndex(FavDB.IMAGE_URL));
@@ -68,8 +68,8 @@ public class FavoritesFragment extends Fragment {
                 String lng = cursor.getString(cursor.getColumnIndex(FavDB.LNG));
                 String img2 = cursor.getString(cursor.getColumnIndex(FavDB.IMG2));
                 String img3 = cursor.getString(cursor.getColumnIndex(FavDB.IMG3));
-                String  img4= cursor.getString(cursor.getColumnIndex(FavDB.IMG4));
-                FavItem favItem = new FavItem(id,title,pershkrimi,lokacioni,cmimi,siperfaqja,dhoma,telefoni,image,lat,lng,img2,img3,img4);
+                String img4 = cursor.getString(cursor.getColumnIndex(FavDB.IMG4));
+                FavItem favItem = new FavItem(id, title, pershkrimi, lokacioni, cmimi, siperfaqja, dhoma, telefoni, image, lat, lng, img2, img3, img4);
                 favItemList.add(favItem);
 
             }
@@ -78,7 +78,7 @@ public class FavoritesFragment extends Fragment {
                 cursor.close();
             db.close();
         }
-        favAdapter = new FavAdapter(getActivity(),favItemList);
+        favAdapter = new FavAdapter(getActivity(), favItemList);
         recyclerView.setAdapter(favAdapter);
     }
 

@@ -147,7 +147,7 @@ public class SignUp extends AppCompatActivity {
 
     public void registerUser(View view) {
 
-        if(!validateName() | !validateUsername() | !validateEmail() | !validatePhoneNo() | !validatePassword()){
+        if (!validateName() | !validateUsername() | !validateEmail() | !validatePhoneNo() | !validatePassword()) {
             return;
         }
         progressBar.setVisibility(View.VISIBLE);
@@ -157,36 +157,36 @@ public class SignUp extends AppCompatActivity {
         String phoneNo = regPhoneNo.getEditText().getText().toString();
         String password = regPassword.getEditText().getText().toString();
 
-        String pwd =  createPassword(password);
+        String pwd = createPassword(password);
 
         UserHelperClass helperClass = new UserHelperClass(name, username, email, phoneNo, pwd);
         FirebaseDatabase.getInstance().getReference("users").child(username).setValue(helperClass);
 
-        SessionManager sessionManager = new SessionManager(SignUp.this,SessionManager.SESSION_USERSESSION);
-        sessionManager.createLoginSession(name,username,phoneNo,email,password);
+        SessionManager sessionManager = new SessionManager(SignUp.this, SessionManager.SESSION_USERSESSION);
+        sessionManager.createLoginSession(name, username, phoneNo, email, password);
 
         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
         startActivity(intent);
         finish();
 
     }
-    public  String createPassword(String password) {
+
+    public String createPassword(String password) {
         try {
             byte[] salt = createSalt();
             String saltString = salt.toString();
-            String saltedPassword = saltString+password;
+            String saltedPassword = saltString + password;
             MessageDigest md = MessageDigest.getInstance("SHA");
             byte[] messageDigest = md.digest(saltedPassword.getBytes());
             BigInteger no = new BigInteger(1, messageDigest);
             String hashtext = no.toString(16);
-            return saltString+"/"+hashtext;
-        }
-        catch (NoSuchAlgorithmException e) {
+            return saltString + "/" + hashtext;
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static byte[] createSalt(){
+    public static byte[] createSalt() {
         byte[] bytes = new byte[20];
         SecureRandom random = new SecureRandom();
         random.nextBytes(bytes);
@@ -194,7 +194,7 @@ public class SignUp extends AppCompatActivity {
     }
 
 
-    public void callLoginScreen(View view){
+    public void callLoginScreen(View view) {
         Intent intent = new Intent(SignUp.this, Login.class);
         Pair[] pairs = new Pair[7];
 

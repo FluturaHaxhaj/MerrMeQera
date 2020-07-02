@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,24 +15,24 @@
 
         <TextView
             android:id="@+id/textView"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="41dp"
-            android:layout_marginEnd="41dp"
             android:layout_marginTop="28dp"
+            android:layout_marginEnd="41dp"
             android:fontFamily="@font/aclonica"
+            android:text="Rreth Nesh"
             android:textSize="24dp"
-            android:text="Rreth Nesh" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView"
             android:layout_below="@+id/textView"
+            android:layout_alignStart="@+id/textView"
             android:layout_marginTop="5dp"
             android:textSize="22dp"
             android:textStyle="bold|italic" />
@@ -42,98 +41,95 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView5"
             android:layout_below="@+id/textView5"
+            android:layout_alignStart="@+id/textView5"
             android:layout_marginTop="12dp"
             android:layout_marginRight="41dp"
-            android:textColor="@color/black"
             android:fontFamily="@font/raleway_semibold"
-            android:textSize="18dp"
             android:text="@string/description"
-            />
+            android:textColor="@color/black"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:text="Kontakti"
-            android:textSize="24dp"
             android:layout_below="@+id/textView8"
             android:layout_alignStart="@+id/textView8"
-            android:fontFamily="@font/aclonica"/>
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/aclonica"
+            android:text="Kontakti"
+            android:textSize="24dp" />
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="20dp"
-            android:text="Endriti"
-            android:fontFamily="@font/raleway_semibold"
             android:layout_below="@+id/textView10"
             android:layout_alignStart="@+id/textView10"
-           />
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="Endriti"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView11"
-            android:fontFamily="@font/raleway_semibold"
             android:layout_below="@+id/textView11"
+            android:layout_alignStart="@+id/textView11"
             android:layout_marginTop="7dp"
-            android:textSize="16dp"
+            android:fontFamily="@font/raleway_semibold"
             android:text="Tel: 045-240-839"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView14"
             android:layout_below="@+id/textView14"
+            android:layout_alignStart="@+id/textView14"
             android:layout_marginTop="7dp"
             android:fontFamily="@font/raleway_semibold"
-            android:textSize="16dp"
             android:text="Mail: endrit.bajrami@student.uni-pr.edu"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:textSize="20dp"
-            android:fontFamily="@font/raleway_semibold"
-            android:text="Flutura"
             android:layout_below="@+id/textView15"
             android:layout_alignStart="@+id/textView15"
-         />
+            android:layout_marginTop="11dp"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="Flutura"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView16"
             android:layout_below="@+id/textView16"
+            android:layout_alignStart="@+id/textView16"
             android:layout_marginTop="7dp"
-            android:textSize="16dp"
-            android:text="Tel: 044-261-766"
             android:fontFamily="@font/raleway_semibold"
-            android:textColor="@android:color/black"/>
+            android:text="Tel: 044-261-766"
+            android:textColor="@android:color/black"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mail: flutura.haxhaj@student.uni-pr.edu"
             android:layout_below="@+id/textView18"
             android:layout_alignStart="@+id/textView18"
-            android:fontFamily="@font/raleway_semibold"
-            android:textSize="16dp"
             android:layout_marginTop="7dp"
-            android:textColor="@android:color/black"/>
+            android:fontFamily="@font/raleway_semibold"
+            android:text="Mail: flutura.haxhaj@student.uni-pr.edu"
+            android:textColor="@android:color/black"
+            android:textSize="16dp" />
 
     </RelativeLayout>
 

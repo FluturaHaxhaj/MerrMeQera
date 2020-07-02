@@ -19,7 +19,7 @@ public class FavItem {
     public FavItem() {
     }
 
-    public FavItem(String key_id, String titulli,String pershkrimi, String lokacioni, String cmimi,String siperfaqja,String dhoma, String telefoni,String img,String lat,String lng,String img2,String img3,String img4) {
+    public FavItem(String key_id, String titulli, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String dhoma, String telefoni, String img, String lat, String lng, String img2, String img3, String img4) {
         this.key_id = key_id;
         this.titulli = titulli;
         this.lokacioni = lokacioni;

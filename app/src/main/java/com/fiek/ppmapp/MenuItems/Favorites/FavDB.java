@@ -26,13 +26,15 @@ public class FavDB extends SQLiteOpenHelper {
     public static String LAT = "lat";
     public static String LNG = "lng";
     public static String FAVORITE_STATUS = "fstatus";
-    private static String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+ "("
-            +KEY_ID + " TEXT,"+ TITULLI+ " TEXT,"
-            +PERSHKRIMI+" TEXT,"+ LOKACIONI+ " TEXT,"
-            +CMIMI+" TEXT,"+SIPERFAQJA+" TEXT,"+KATE_DHOMA+" TEXT,"+TELEFONI+" TEXT,"
-            +IMAGE_URL+" TEXT,"+FAVORITE_STATUS+" TEXT,"+LAT+" TEXT,"+LNG+" TEXT,"+IMG2+" TEXT,"+IMG3+" TEXT,"+IMG4+" TEXT)";
+    private static String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
+            + KEY_ID + " TEXT," + TITULLI + " TEXT,"
+            + PERSHKRIMI + " TEXT," + LOKACIONI + " TEXT,"
+            + CMIMI + " TEXT," + SIPERFAQJA + " TEXT," + KATE_DHOMA + " TEXT," + TELEFONI + " TEXT,"
+            + IMAGE_URL + " TEXT," + FAVORITE_STATUS + " TEXT," + LAT + " TEXT," + LNG + " TEXT," + IMG2 + " TEXT," + IMG3 + " TEXT," + IMG4 + " TEXT)";
 
-    public FavDB(Context context){super(context,DATABASE_NAME,null,DB_VERSION);}
+    public FavDB(Context context) {
+        super(context, DATABASE_NAME, null, DB_VERSION);
+    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -43,57 +45,59 @@ public class FavDB extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    public void insertEmpty(){
+
+    public void insertEmpty() {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        for (int x=1;x<11;x++){
-            cv.put(KEY_ID,x);
-            cv.put(FAVORITE_STATUS,"0");
-            db.insert(TABLE_NAME,null,cv);
+        for (int x = 1; x < 11; x++) {
+            cv.put(KEY_ID, x);
+            cv.put(FAVORITE_STATUS, "0");
+            db.insert(TABLE_NAME, null, cv);
         }
     }
 
-    public void insertIntoTheDatabase(String id,String titulli,String pershkrimi,String lokacioni,String cmimi,String siperfaqja,String kateDhoma,String telefoni,String imageUrl,String fav_status,String lat, String lng,
-                                      String img2,String img3,String img4){
+    public void insertIntoTheDatabase(String id, String titulli, String pershkrimi, String lokacioni, String cmimi, String siperfaqja, String kateDhoma, String telefoni, String imageUrl, String fav_status, String lat, String lng,
+                                      String img2, String img3, String img4) {
         SQLiteDatabase db;
         db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(KEY_ID,id);
-        cv.put(TITULLI,titulli);
-        cv.put(PERSHKRIMI,pershkrimi);
-        cv.put(LOKACIONI,lokacioni);
-        cv.put(CMIMI,cmimi);
-        cv.put(SIPERFAQJA,siperfaqja);
-        cv.put(KATE_DHOMA,kateDhoma);
-        cv.put(TELEFONI,telefoni);
-        cv.put(IMAGE_URL,imageUrl);
-        cv.put(FAVORITE_STATUS,fav_status);
-        cv.put(LAT,lat);
-        cv.put(LNG,lng);
-        cv.put(IMG2,img2);
-        cv.put(IMG3,img3);
-        cv.put(IMG4,img4);
-        db.insert(TABLE_NAME,null,cv);
-        Log.d("FavDV Status", TITULLI+", favstatus - "+fav_status+" - . "+ cv);
+        cv.put(KEY_ID, id);
+        cv.put(TITULLI, titulli);
+        cv.put(PERSHKRIMI, pershkrimi);
+        cv.put(LOKACIONI, lokacioni);
+        cv.put(CMIMI, cmimi);
+        cv.put(SIPERFAQJA, siperfaqja);
+        cv.put(KATE_DHOMA, kateDhoma);
+        cv.put(TELEFONI, telefoni);
+        cv.put(IMAGE_URL, imageUrl);
+        cv.put(FAVORITE_STATUS, fav_status);
+        cv.put(LAT, lat);
+        cv.put(LNG, lng);
+        cv.put(IMG2, img2);
+        cv.put(IMG3, img3);
+        cv.put(IMG4, img4);
+        db.insert(TABLE_NAME, null, cv);
+        Log.d("FavDV Status", TITULLI + ", favstatus - " + fav_status + " - . " + cv);
     }
 
-    public Cursor read_all_data(String id){
+    public Cursor read_all_data(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "select * from "+ TABLE_NAME+" where "+KEY_ID+ "="+id+"";
-        return db.rawQuery(sql,null,null);
+        String sql = "select * from " + TABLE_NAME + " where " + KEY_ID + "=" + id + "";
+        return db.rawQuery(sql, null, null);
     }
 
-    public void remove_fav(String id){
+    public void remove_fav(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "UPDATE "+ TABLE_NAME +" SET "+FAVORITE_STATUS+" ='0' WHERE "+KEY_ID+"="+id+"";
+        String sql = "UPDATE " + TABLE_NAME + " SET " + FAVORITE_STATUS + " ='0' WHERE " + KEY_ID + "=" + id + "";
         db.execSQL(sql);
-        Log.d("remove",id);
+        Log.d("remove", id);
     }
-    public Cursor select_all_favorite_list(){
+
+    public Cursor select_all_favorite_list() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "SELECT * FROM " + TABLE_NAME+" WHERE "+FAVORITE_STATUS+" ='1'";
-        return db.rawQuery(sql,null,null);
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + FAVORITE_STATUS + " ='1'";
+        return db.rawQuery(sql, null, null);
     }
 
 }

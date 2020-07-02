@@ -10,7 +10,7 @@ import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 
 public class MarkerClusterRenderer<T extends ClusterItem> extends DefaultClusterRenderer<T> {
 
-    public MarkerClusterRenderer(Context context, GoogleMap googleMap, ClusterManager<T> clusterManager){
+    public MarkerClusterRenderer(Context context, GoogleMap googleMap, ClusterManager<T> clusterManager) {
         super(context, googleMap, clusterManager);
     }
 

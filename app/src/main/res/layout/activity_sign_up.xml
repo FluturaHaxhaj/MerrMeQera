@@ -13,138 +13,138 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-    <ImageView
-        android:id="@+id/fotonalt"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="-15dp"
-        android:src="@drawable/homebg"
-        android:transitionName="logo_name" />
+        <ImageView
+            android:id="@+id/fotonalt"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="-15dp"
+            android:src="@drawable/homebg"
+            android:transitionName="logo_name" />
 
-    <TextView
-        android:id="@+id/mirid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-20dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:text="Mirësevini"
-        android:textColor="#000"
-        android:textSize="40sp"
-        android:transitionName="logo_text" />
+        <TextView
+            android:id="@+id/mirid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="Mirësevini"
+            android:textColor="#000"
+            android:textSize="40sp"
+            android:transitionName="logo_text" />
 
-    <TextView
-        android:id="@+id/regjid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Regjistrohu dhe merr me Qera"
-        android:transitionName="logo_desc"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/regjid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regjistrohu dhe merr me Qera"
+            android:textSize="18sp"
+            android:transitionName="logo_desc" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Emri i plotë">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Emri i plotë">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_username"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Emri i përdoruesit">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_phoneNo"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tel"
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_password"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fjalëkalimi"
+                android:transitionName="password_tran"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/reg_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Emri i përdoruesit">
+            android:layout_marginTop="-15dp"
+            android:background="#000"
+            android:onClick="registerUser"
+            android:text="Krijo llogarin"
+            android:textColor="#fff" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <Button
+            android:id="@+id/reg_login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:background="#00000000"
+            android:onClick="callLoginScreen"
+            android:text="Keni llogari? Kyqu këtu" />
 
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_phoneNo"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Tel"
-
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Fjalëkalimi"
-            app:passwordToggleEnabled="true"
-            android:transitionName="password_tran"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/reg_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
-        android:background="#000"
-        android:onClick="registerUser"
-        android:text="Krijo llogarin"
-        android:textColor="#fff" />
-
-    <Button
-        android:id="@+id/reg_login_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#00000000"
-        android:onClick="callLoginScreen"
-        android:text="Keni llogari? Kyqu këtu" />
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:padding="5dp"
-        android:elevation="10dp"
-        android:background="@drawable/white_circle"/>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/white_circle"
+            android:elevation="10dp"
+            android:padding="5dp" />
     </LinearLayout>
 
 </ScrollView>

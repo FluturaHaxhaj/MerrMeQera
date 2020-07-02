@@ -24,16 +24,15 @@ public class FavoritesActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_favorites);
 
-        tabLayout = (TabLayout)findViewById(R.id.tablayout_id_fav);
-        viewPager = (ViewPager)findViewById(R.id.viewpager_id_fav);
+        tabLayout = (TabLayout) findViewById(R.id.tablayout_id_fav);
+        viewPager = (ViewPager) findViewById(R.id.viewpager_id_fav);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         //Add Fargment
-        adapter.AddFragment(new FavoritesFragment(),"Favorites");
+        adapter.AddFragment(new FavoritesFragment(), "Favorites");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-
 
 
     }

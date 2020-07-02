@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.fiek.ppmapp.Home.Rregulla">
 
-        <androidx.viewpager.widget.ViewPager
-            android:foregroundGravity="center"
-            android:id="@+id/viewPager"
-            android:layout_centerInParent="true"
-            android:overScrollMode="never"
-            android:clipToPadding="false"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </androidx.viewpager.widget.ViewPager>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:clipToPadding="false"
+        android:foregroundGravity="center"
+        android:overScrollMode="never"></androidx.viewpager.widget.ViewPager>
 
-    </RelativeLayout>
+</RelativeLayout>

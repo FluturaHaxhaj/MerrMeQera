@@ -27,7 +27,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     private FavDB favDB;
     RequestOptions option;
 
-    public FavAdapter(Context context, List<FavItem> favItemList){
+    public FavAdapter(Context context, List<FavItem> favItemList) {
         this.context = context;
         this.favItemList = favItemList;
         option = new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
@@ -37,7 +37,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fav_item,
-                parent,false);
+                parent, false);
         favDB = new FavDB(context);
         final ViewHolder viewHolder = new ViewHolder(view);
         viewHolder.view_container.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +51,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
                 i.putExtra("cmimi", favItemList.get(viewHolder.getAdapterPosition()).getCmimi());
                 i.putExtra("siperfaqja", favItemList.get(viewHolder.getAdapterPosition()).getSiperfaqja());
                 i.putExtra("dhoma", favItemList.get(viewHolder.getAdapterPosition()).getDhoma());
-                i.putExtra("tel",favItemList.get(viewHolder.getAdapterPosition()).getTelefoni());
+                i.putExtra("tel", favItemList.get(viewHolder.getAdapterPosition()).getTelefoni());
                 i.putExtra("img", favItemList.get(viewHolder.getAdapterPosition()).getImg());
                 i.putExtra("lat", favItemList.get(viewHolder.getAdapterPosition()).getLat());
                 i.putExtra("lng", favItemList.get(viewHolder.getAdapterPosition()).getLng());
@@ -116,7 +116,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     private void removeItem(int position) {
         favItemList.remove(position);
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position,favItemList.size());
+        notifyItemRangeChanged(position, favItemList.size());
 
     }
 }

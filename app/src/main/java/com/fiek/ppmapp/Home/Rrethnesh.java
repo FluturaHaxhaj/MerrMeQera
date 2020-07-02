@@ -97,12 +97,12 @@ public class Rrethnesh extends AppCompatActivity implements NavigationView.OnNav
             public void onClick(View view) {
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String shareBody="Përshëndetje!!";
+                String shareBody = "Përshëndetje!!";
 
                 String compose = "Përshëndetje!!Dëshiroje të të kontaktojë rreth MerrMeQira.";
-                sharingIntent.putExtra(Intent.EXTRA_SUBJECT,"Subject:");
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject:");
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, compose);
-                startActivity(Intent.createChooser(sharingIntent,"Flutura"));
+                startActivity(Intent.createChooser(sharingIntent, "Flutura"));
             }
         });
 
@@ -135,6 +135,7 @@ public class Rrethnesh extends AppCompatActivity implements NavigationView.OnNav
         }
 
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == CAMERA_PERM_CODE) {
@@ -180,7 +181,7 @@ public class Rrethnesh extends AppCompatActivity implements NavigationView.OnNav
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Snackbar.make(drawerLayout,"Ngarkimi i fotos deshtoi.",Snackbar.LENGTH_LONG)
+                Snackbar.make(drawerLayout, "Ngarkimi i fotos deshtoi.", Snackbar.LENGTH_LONG)
                         .setAction("Provo Perseri", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -250,17 +251,17 @@ public class Rrethnesh extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
-    private void naviagtionDrawer(){
+    private void naviagtionDrawer() {
 
         //Naviagtion Drawer
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
 
-        menuIcon.setOnClickListener(new View.OnClickListener(){
+        menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                if(drawerLayout.isDrawerVisible(GravityCompat.START))
+            public void onClick(View view) {
+                if (drawerLayout.isDrawerVisible(GravityCompat.START))
                     drawerLayout.closeDrawer(GravityCompat.START);
                 else drawerLayout.openDrawer(GravityCompat.START);
             }

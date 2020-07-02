@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp">
+
     <LinearLayout
+        android:id="@id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:id="@id/container">
+        android:padding="16dp">
 
 
-            <ImageView
-                android:id="@+id/thumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                />
-
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,8 +29,8 @@
                 android:id="@+id/cmimi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cmimi"
                 android:fontFamily="@font/raleway_semibold"
+                android:text="Cmimi"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,10 +41,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="7dp"
-                android:text="Banesa"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/raleway_semibold"
+                android:text="Banesa"
                 android:textColor="@android:color/black"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/raleway_semibold"
                 android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                android:fontFamily="@font/raleway_semibold"
                 android:text="Lokacioni"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
