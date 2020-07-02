@@ -62,11 +62,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                                     double lat = jsonObject.getDouble("lat");
                                     double lng = jsonObject.getDouble("lng");
-                                    String name = jsonObject.getString("lokacioni");
+                                    String lokacioni = jsonObject.getString("lokacioni");
+                                    String banesMeQera = jsonObject.getString("banesa");
+                                    String siperfaqja = jsonObject.getString("siperfaqja");
+                                    String cmimi = jsonObject.getString("cmimi");
                                     LatLng latLng = new LatLng(lat, lng);
-                                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(name);
+                                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(banesMeQera+" ne lagjen "+lokacioni+" me siperfaqe " +
+                                            siperfaqja+ ", cmimi "+cmimi);
                                     listMarkers.add(markerOptions);
-                                    googleMap.addMarker(markerOptions);
                                 }
                                 JSONArray jsonArray2 = response.getJSONArray("Shtepite");
                                 for (int i = 0;i<jsonArray2.length();i++){
@@ -76,14 +79,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                     String lngS = jsonObject.getString("lng");
                                     double lat = Double.parseDouble(latS);
                                     double lng = Double.parseDouble(lngS);
-                                    String name = jsonObject.getString("lokacioni");
+                                    String lokacioni = jsonObject.getString("lokacioni");
+                                    String banesMeQera = jsonObject.getString("shtepi");
+                                    String siperfaqja = jsonObject.getString("siperfaqja");
+                                    String cmimi = jsonObject.getString("cmimi");
                                     LatLng latLng = new LatLng(lat, lng);
-                                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(name);
+                                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(banesMeQera+" ne lagjen "+lokacioni+" me siperfaqe " +
+                                            siperfaqja+ ", cmimi "+cmimi);
                                     listMarkers.add(markerOptions);
-                                    googleMap.addMarker(markerOptions);
                                 }
 
                                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(listMarkers.get(0).getPosition(), 13.0f));
+                                setupClusterManager();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -149,6 +156,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         clusterManager = new ClusterManager<>(this, googleMap);
         MapTask mapTask = new MapTask();
         mapTask.execute();
-        setupClusterManager();
+
     }
 }
