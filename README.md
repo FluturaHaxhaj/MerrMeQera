@@ -2,10 +2,10 @@
 
 * Android Studio IDE
 * Android SDK
-* Built Using Java
+* Java
 * Firebase Database
 * Firebase - Regjistrimi dhe Kyqja në aplikacion 
-* JSON - Popullimi i të dhënave të aplikacionit
+* JSON 
 * SQLite
 * Komunikimi me pjese harduerike - Kamera
 * Google Map Cluster 
